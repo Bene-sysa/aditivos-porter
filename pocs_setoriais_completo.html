@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POCs Setoriais - Novo Processo de Faturamento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 70%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            background: white;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            top: 40%;
+            left: 80%;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 10px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 0;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(102, 126, 234, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-header {
+            padding: 3rem 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .team-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-icon.solicitante {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .team-icon.projetos {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+        }
+
+        .team-icon.gerente {
+            background: linear-gradient(135deg, #45b7d1, #96c93d);
+            box-shadow: 0 10px 30px rgba(69, 183, 209, 0.4);
+        }
+
+        .team-icon.juridico {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4);
+        }
+
+        .team-icon.faturamento {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.4);
+        }
+
+        .team-title {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .team-subtitle {
+            color: #718096;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .team-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 1.5rem 2.5rem;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-top: 0.2rem;
+        }
+
+        .team-preview {
+            padding: 2rem 2.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .preview-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: #f7fafc;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .preview-item:hover {
+            background: #edf2f7;
+            transform: translateX(5px);
+        }
+
+        .preview-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1rem;
+        }
+
+        .preview-icon.checklist {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .preview-icon.tools {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+        }
+
+        .preview-icon.alert {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+            color: white;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+            margin: 2rem;
+            width: 100%;
+        }
+
+        .modal-header {
+            padding: 2rem 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-body {
+            padding: 3rem;
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+            opacity: 0.9;
+            font-size: 1.2rem;
+        }
+
+        .steps-container {
+            margin-bottom: 3rem;
+        }
+
+        .step-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .step-card:hover {
+            background: #edf2f7;
+            transform: translateX(10px);
+        }
+
+        .step-card.completed {
+            background: #c6f6d5;
+            border-left-color: #38a169;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .step-description {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .step-details {
+            display: none;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        .step-card.expanded .step-details {
+            display: block;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .tool-card:hover {
+            background: white;
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .critical-alert {
+            background: linear-gradient(135deg, #fed7d7, #feb2b2);
+            border: 3px solid #e53e3e;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        .critical-alert h3 {
+            color: #742a2a;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .progress-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78, #38a169);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-weight: 600;
+            color: #4a5568;
+            margin-top: 0.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px) scale(0.9);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .teams-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+                max-height: 95vh;
+            }
+            
+            .modal-body {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🔧 POCs Setoriais</h1>
+            <p class="subtitle">Guias práticos específicos para cada setor no novo processo de faturamento</p>
+        </div>
+
+        <div class="teams-grid">
+            <!-- Solicitante -->
+            <div class="team-card" onclick="openTeamModal('solicitante')">
+                <div class="team-header">
+                    <div class="team-icon solicitante">🎯</div>
+                    <h3 class="team-title">Solicitante</h3>
+                    <p class="team-subtitle">Criação de orçamentos no SERVICE</p>
+                </div>
+                <div class="team-stats">
+                    <div class="stat">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Passos</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Ferramentas</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">15min</div>
+                        <div class="stat-label">Duração</div>
+                    </div>
+                </div>
+                <div class="team-preview">
+                    <div class="preview-item">
+                        <div class="preview-icon checklist">✓</div>
+                        <span>Checklist completo de criação</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon tools">🛠️</div>
+                        <span>Acesso ao sistema SERVICE</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon alert">⚠️</div>
+                        <span>Modelos padrão obrigatórios</span>
+                    </div>
+                    <button class="action-btn">
+                        <span>Acessar Guia</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Time de Projetos -->
+            <div class="team-card" onclick="openTeamModal('projetos')">
+                <div class="team-header">
+                    <div class="team-icon projetos">🔧</div>
+                    <h3 class="team-title">Time de Projetos</h3>
+                    <p class="team-subtitle">Validação técnica de orçamentos</p>
+                </div>
+                <div class="team-stats">
+                    <div class="stat">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">Passos</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Validações</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">10min</div>
+                        <div class="stat-label">Duração</div>
+                    </div>
+                </div>
+                <div class="team-preview">
+                    <div class="preview-item">
+                        <div class="preview-icon checklist">✓</div>
+                        <span>Validação de equipamentos Porter</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon tools">🛠️</div>
+                        <span>Verificação de licenças</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon alert">⚠️</div>
+                        <span>Aprovação ou correção</span>
+                    </div>
+                    <button class="action-btn">
+                        <span>Acessar Guia</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gestor da Filial -->
+            <div class="team-card" onclick="openTeamModal('gerente')">
+                <div class="team-header">
+                    <div class="team-icon gerente">👨‍💼</div>
+                    <h3 class="team-title">Gestor da Filial</h3>
+                    <p class="team-subtitle">Validação comercial + Bonificações</p>
+                </div>
+                <div class="team-stats">
+                    <div class="stat">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Passos</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">DIA 10</div>
+                        <div class="stat-label">Prazo</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">CRÍTICO</div>
+                        <div class="stat-label">Prioridade</div>
+                    </div>
+                </div>
+                <div class="team-preview">
+                    <div class="preview-item">
+                        <div class="preview-icon checklist">✓</div>
+                        <span>Validação comercial</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon tools">💰</div>
+                        <span>Lançamento de bonificações</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon alert">⏰</div>
+                        <span>Prazo crítico: dia 10!</span>
+                    </div>
+                    <button class="action-btn">
+                        <span>Acessar Guia</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Time Jurídico -->
+            <div class="team-card" onclick="openTeamModal('juridico')">
+                <div class="team-header">
+                    <div class="team-icon juridico">⚖️</div>
+                    <h3 class="team-title">Time Jurídico</h3>
+                    <p class="team-subtitle">Contratos + Baixa imediata</p>
+                </div>
+                <div class="team-stats">
+                    <div class="stat">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Passos</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Simulador</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">IMEDIATO</div>
+                        <div class="stat-label">Ação</div>
+                    </div>
+                </div>
+                <div class="team-preview">
+                    <div class="preview-item">
+                        <div class="preview-icon checklist">✓</div>
+                        <span>Elaboração de contratos</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon tools">🚨</div>
+                        <span>Baixa imediata no ERP</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon alert">⚠️</div>
+                        <span>Mudança de mindset</span>
+                    </div>
+                    <button class="action-btn">
+                        <span>Acessar Guia</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Time de Faturamento -->
+            <div class="team-card" onclick="openTeamModal('faturamento')">
+                <div class="team-header">
+                    <div class="team-icon faturamento">📊</div>
+                    <h3 class="team-title">Time de Faturamento</h3>
+                    <p class="team-subtitle">Conferência + Análises</p>
+                </div>
+                <div class="team-stats">
+                    <div class="stat">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Etapas</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Ferramentas</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">MENSAL</div>
+                        <div class="stat-label">Ciclo</div>
+                    </div>
+                </div>
+                <div class="team-preview">
+                    <div class="preview-item">
+                        <div class="preview-icon checklist">✓</div>
+                        <span>Cronograma mensal</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon tools">📈</div>
+                        <span>Foco em análises</span>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon alert">💡</div>
+                        <span>Fim das planilhas</span>
+                    </div>
+                    <button class="action-btn">
+                        <span>Acessar Guia</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para exibir detalhes de cada time -->
+    <div class="modal" id="teamModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <h2 class="modal-title" id="modalTitle">Time</h2>
+                <p class="modal-subtitle" id="modalSubtitle">Descrição</p>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo será inserido dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const teamsData = {
+            solicitante: {
+                title: "🎯 Solicitante",
+                subtitle: "Você é responsável por criar o orçamento no SERVICE antes de solicitar qualquer aditivo",
+                alert: "⚠️ MUDANÇA IMPORTANTE: O projetista não monta mais o orçamento! Agora é sua responsabilidade.",
+                steps: [
+                    {
+                        title: "Acessar sistema SERVICE",
+                        description: "Entre no sistema e navegue até a seção de orçamentos",
+                        details: "Menu: Operacional/Vendas > B - Orçamentos > A - Orçamentos (Cadastro/Alteração)"
+                    },
+                    {
+                        title: "Selecionar tipo de orçamento",
+                        description: "Escolha o tipo correto para validação",
+                        details: "Escolher \"Aditivo feito pelo time de CS (Retenção de clientes)\" → Validação por Iane"
+                    },
+                    {
+                        title: "Definir modalidade como Locação",
+                        description: "Todos os orçamentos com equipamentos porter precisam ser do tipo LOCAÇÃO",
+                        details: "Esta configuração é obrigatória para equipamentos porter"
+                    },
+                    {
+                        title: "Usar modelo de orçamento padrão",
+                        description: "Sempre utilize os modelos pré-definidos",
+                        details: "Escolher o modelo de Orçamento Pré-Gravado da franqueadora"
+                    },
+                    {
+                        title: "Configurar produtos",
+                        description: "Adicionar/remover equipamentos conforme necessário",
+                        details: "Na aba \"Produtos\", marcar opção \"COBRAR\" se o produto deve ser cobrado do cliente"
+                    },
+                    {
+                        title: "Configurar produtos a retirar",
+                        description: "Listar equipamentos que serão removidos",
+                        details: "Na aba \"Produtos a Retirar\", adicionar equipamentos que serão removidos do condomínio"
+                    },
+                    {
+                        title: "Definir instalação (se aplicável)",
+                        description: "Configurar serviços de instalação quando necessário",
+                        details: "Na aba \"Serviços\", adicionar \"INSTALAÇÃO POR PONTOS\" - valor é calculado automaticamente"
+                    },
+                    {
+                        title: "Incluir observações importantes",
+                        description: "Registrar informações relevantes para o time jurídico",
+                        details: "Usar aba \"Observações\" → \"Observações Internas do Orçamento\" (não aparecem na impressão)"
+                    },
+                    {
+                        title: "Preencher Formulário de Solicitação",
+                        description: "Completar o formulário oficial de aditivo",
+                        details: "Informar o número do orçamento gerado no SERVICE e dados da proposta"
+                    },
+                    {
+                        title: "Aguardar validação técnica",
+                        description: "O time de Projetos irá validar seu orçamento",
+                        details: "Eles podem solicitar correções via ticket ou aprovar para seguir o fluxo"
+                    }
+                ],
+                tools: [
+                    { icon: "🎮", title: "Simulador", description: "Pratique com cenários reais" },
+                    { icon: "💡", title: "Dicas", description: "Erros comuns e como evitar" },
+                    { icon: "📞", title: "Contatos", description: "Quem procurar em caso de dúvidas" }
+                ]
+            },
+            projetos: {
+                title: "🔧 Time de Projetos",
+                subtitle: "Sua responsabilidade mudou! Agora você valida tecnicamente orçamentos já criados pelos solicitantes",
+                alert: null,
+                steps: [
+                    {
+                        title: "Receber notificação de validação",
+                        description: "Aguardar ticket automático do Movidesk",
+                        details: "O sistema gera automaticamente um ticket quando há orçamento para validação"
+                    },
+                    {
+                        title: "Verificar equipamentos Porter",
+                        description: "Validar se os equipamentos especificados são adequados",
+                        details: "Analisar se os equipamentos atendem ao escopo técnico do projeto"
+                    },
+                    {
+                        title: "Verificar licenças vinculadas à matriz",
+                        description: "Confirmar disponibilidade e compatibilidade",
+                        details: "Verificar se as licenças necessárias estão disponíveis e são compatíveis"
+                    },
+                    {
+                        title: "Validar viabilidade técnica geral",
+                        description: "Análise completa da implementação",
+                        details: "Avaliar se a implementação é tecnicamente viável e factível"
+                    },
+                    {
+                        title: "Decidir: Aprovar ou Solicitar Correções",
+                        description: "Tomar decisão baseada na análise técnica",
+                        details: "Se necessárias correções, retornar ao solicitante com comentários claros via ticket"
+                    },
+                    {
+                        title: "Se aprovado: Adicionar gerente responsável",
+                        description: "Incluir o gerente no fluxo de aprovação",
+                        details: "Colocar o gerente responsável em cópia no ticket para prosseguir"
+                    },
+                    {
+                        title: "Informar validação concluída",
+                        description: "Comunicar que o escopo foi validado tecnicamente",
+                        details: "Registrar no ticket que a validação técnica foi concluída com sucesso"
+                    }
+                ],
+                tools: [
+                    { icon: "🔍", title: "Checklist", description: "Lista de verificação técnica" },
+                    { icon: "⚡", title: "Validador", description: "Ferramenta de validação rápida" },
+                    { icon: "📋", title: "Template", description: "Modelo de comentários" }
+                ]
+            },
+            gerente: {
+                title: "👨‍💼 Gestor da Filial",
+                subtitle: "Duas responsabilidades críticas: validação comercial dos aditivos e lançamento de bonificações até o dia 10",
+                alert: "⏰ PRAZO CRÍTICO: DIA 10! Você tem até o dia 10 de cada mês para lançar todas as bonificações.",
+                steps: [
+                    {
+                        title: "Receber orçamento para validação comercial",
+                        description: "Analisar orçamento validado tecnicamente",
+                        details: "Receber ticket com orçamento que já passou pela validação técnica do time de Projetos"
+                    },
+                    {
+                        title: "Confirmar valores negociados",
+                        description: "Verificar se valores correspondem ao negociado",
+                        details: "Conferir se o orçamento corresponde exatamente ao que foi negociado com o cliente"
+                    },
+                    {
+                        title: "Verificar prazos e condições",
+                        description: "Confirmar condições especiais acordadas",
+                        details: "Verificar períodos de carência, descontos ou outras condições especiais"
+                    },
+                    {
+                        title: "Aprovar para o Jurídico",
+                        description: "Autorizar envio para elaboração do contrato",
+                        details: "Fechar o orçamento para autorizar o envio ao time jurídico"
+                    },
+                    {
+                        title: "Verificar aditivos assinados no mês anterior",
+                        description: "Identificar aditivos que precisam de bonificação",
+                        details: "Verificar quais aditivos foram baixados como \"assinados\" pelo Jurídico"
+                    },
+                    {
+                        title: "Identificar necessidade de bonificações",
+                        description: "Analisar quais aditivos têm condições especiais",
+                        details: "Identificar aditivos com carência, descontos ou promoções negociadas"
+                    },
+                    {
+                        title: "Acessar sistema SERVICE",
+                        description: "Navegar para o módulo de bonificações",
+                        details: "Ir para o módulo de \"Lançamentos de Bonificações\" no sistema"
+                    },
+                    {
+                        title: "Configurar valor da bonificação",
+                        description: "Inserir o valor mensal a ser bonificado",
+                        details: "Especificar o valor exato que deve ser bonificado mensalmente"
+                    },
+                    {
+                        title: "Definir período de vigência",
+                        description: "Configurar duração da bonificação",
+                        details: "Especificar por quantos meses a bonificação deve ser aplicada"
+                    },
+                    {
+                        title: "Confirmar distribuição automática",
+                        description: "Verificar cálculo do sistema",
+                        details: "O sistema calculará automaticamente a distribuição mensal dos valores"
+                    },
+                    {
+                        title: "Salvar bonificação",
+                        description: "Confirmar o lançamento no sistema",
+                        details: "Finalizar e salvar a bonificação no sistema para processamento"
+                    },
+                    {
+                        title: "Verificar relatório de acompanhamento",
+                        description: "Monitorar bonificações lançadas",
+                        details: "Acessar: Relatórios > C - Monitoramento/Operacional > 9 - Bonificações de Clientes"
+                    }
+                ],
+                tools: [
+                    { icon: "🧮", title: "Calculadora", description: "Calcule bonificações rapidamente" },
+                    { icon: "📅", title: "Lembrete", description: "Configure alertas para dia 10" },
+                    { icon: "📊", title: "Relatórios", description: "Monitore bonificações ativas" }
+                ]
+            },
+            juridico: {
+                title: "⚖️ Time Jurídico",
+                subtitle: "Mudança fundamental: NÃO TENHA MAIS MEDO de marcar aditivos como 'assinado'!",
+                alert: "🚨 AÇÃO MAIS CRÍTICA: Marcar aditivo como 'assinado' no ERP IMEDIATAMENTE após confirmação da assinatura.",
+                steps: [
+                    {
+                        title: "Receber solicitação aprovada",
+                        description: "Orçamento validado e aprovado comercialmente",
+                        details: "Receber orçamento que passou por validação técnica e aprovação comercial"
+                    },
+                    {
+                        title: "Elaborar contrato aditivo",
+                        description: "Criar contrato baseado no orçamento",
+                        details: "Elaborar o contrato aditivo com base no orçamento fechado e aprovado"
+                    },
+                    {
+                        title: "Enviar contrato para assinatura",
+                        description: "Seguir processo padrão de envio",
+                        details: "Enviar contrato seguindo o processo padrão de envio e acompanhamento"
+                    },
+                    {
+                        title: "⚠️ CRÍTICO: Confirmar assinatura",
+                        description: "Verificar se cliente realmente assinou",
+                        details: "Confirmar por qualquer meio (email, físico, digital) que o cliente assinou"
+                    },
+                    {
+                        title: "🚨 IMEDIATAMENTE: Marcar como 'assinado' no ERP",
+                        description: "Esta é a ação mais importante!",
+                        details: "Não adie! Faça imediatamente após confirmação da assinatura"
+                    },
+                    {
+                        title: "Comunicar às partes interessadas",
+                        description: "Informar sobre a baixa do aditivo",
+                        details: "Informar gestor da filial (para possível bonificação) e time de faturamento"
+                    }
+                ],
+                tools: [
+                    { icon: "🎯", title: "Simulador", description: "Pratique cenários de assinatura" },
+                    { icon: "📚", title: "Mindset", description: "Entenda a mudança de processo" },
+                    { icon: "⚡", title: "Checklist", description: "Lista rápida de ações" }
+                ]
+            },
+            faturamento: {
+                title: "📊 Time de Faturamento",
+                subtitle: "Sua função evoluiu! Não digite mais planilhas. Agora você é o conferente dos dados do ERP",
+                alert: "✨ NOVA REALIDADE: Foco em conferência de dados confiáveis e análises estratégicas",
+                steps: [
+                    {
+                        title: "Aguardar até dia 11",
+                        description: "Respeitar o prazo das bonificações",
+                        details: "Gestores têm até dia 10 para lançar todas as bonificações necessárias"
+                    },
+                    {
+                        title: "Dia 12-13: Aplicar reajustes necessários",
+                        description: "Processar reajustes contratuais anuais",
+                        details: "Aplicar reajustes contratuais anuais diretamente no sistema ERP"
+                    },
+                    {
+                        title: "Dia 13: Gerar relatório em lote",
+                        description: "Criar relatório completo para conferência",
+                        details: "Gerar relatório contemplando valores mensais menos bonificações aplicadas"
+                    },
+                    {
+                        title: "Dia 13: Encaminhar relatório aos gestores",
+                        description: "Distribuir para conferência final",
+                        details: "Enviar relatório aos gestores para conferência final antes da execução"
+                    },
+                    {
+                        title: "A partir do dia 15: Executar faturamento",
+                        description: "Processar com dados 100% confiáveis",
+                        details: "Executar faturamento final com base em dados totalmente confiáveis do ERP"
+                    },
+                    {
+                        title: "Focar em análises e melhorias",
+                        description: "Dedicar tempo para otimizações",
+                        details: "Usar tempo liberado para análises estratégicas e otimizações do processo"
+                    }
+                ],
+                tools: [
+                    { icon: "📈", title: "Dashboard", description: "Monitore KPIs e métricas" },
+                    { icon: "⏱️", title: "Cronômetro", description: "Acompanhe tempos de processo" },
+                    { icon: "🔧", title: "Otimização", description: "Identifique melhorias" }
+                ]
+            }
+        };
+
+        function openTeamModal(teamKey) {
+            const team = teamsData[teamKey];
+            const modal = document.getElementById('teamModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalSubtitle = document.getElementById('modalSubtitle');
+            const modalBody = document.getElementById('modalBody');
+
+            modalTitle.textContent = team.title;
+            modalSubtitle.textContent = team.subtitle;
+
+            let bodyContent = '';
+
+            // Alert crítico se existir
+            if (team.alert) {
+                bodyContent += `
+                    <div class="critical-alert">
+                        <h3>${team.alert}</h3>
+                    </div>
+                `;
+            }
+
+            // Seção de progresso
+            bodyContent += `
+                <div class="progress-section">
+                    <h3>📊 Seu Progresso</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-${teamKey}" style="width: 0%;"></div>
+                    </div>
+                    <div class="progress-text" id="progress-text-${teamKey}">0% concluído</div>
+                </div>
+            `;
+
+            // Steps
+            bodyContent += `
+                <div class="steps-container">
+                    <h3>📋 Passos do Processo</h3>
+            `;
+
+            team.steps.forEach((step, index) => {
+                bodyContent += `
+                    <div class="step-card" onclick="toggleStep(this)" data-team="${teamKey}" data-step="${index}">
+                        <div class="step-header">
+                            <div class="step-number">${index + 1}</div>
+                            <div class="step-title">${step.title}</div>
+                        </div>
+                        <div class="step-description">${step.description}</div>
+                        <div class="step-details">${step.details}</div>
+                    </div>
+                `;
+            });
+
+            bodyContent += '</div>';
+
+            // Tools
+            bodyContent += `
+                <div class="tools-grid">
+                    <h3 style="grid-column: 1 / -1; margin-bottom: 1rem;">🛠️ Ferramentas Disponíveis</h3>
+            `;
+
+            team.tools.forEach(tool => {
+                bodyContent += `
+                    <div class="tool-card" onclick="openTool('${tool.title}')">
+                        <div class="tool-icon">${tool.icon}</div>
+                        <h4>${tool.title}</h4>
+                        <p>${tool.description}</p>
+                    </div>
+                `;
+            });
+
+            bodyContent += '</div>';
+
+            modalBody.innerHTML = bodyContent;
+            modal.classList.add('active');
+            updateProgress(teamKey);
+        }
+
+        function closeModal() {
+            document.getElementById('teamModal').classList.remove('active');
+        }
+
+        function toggleStep(stepElement) {
+            const isCompleted = stepElement.classList.contains('completed');
+            stepElement.classList.toggle('completed');
+            stepElement.classList.toggle('expanded');
+            
+            const teamKey = stepElement.dataset.team;
+            updateProgress(teamKey);
+        }
+
+        function updateProgress(teamKey) {
+            const completedSteps = document.querySelectorAll(`[data-team="${teamKey}"].completed`).length;
+            const totalSteps = teamsData[teamKey].steps.length;
+            const percentage = Math.round((completedSteps / totalSteps) * 100);
+            
+            const progressFill = document.getElementById(`progress-${teamKey}`);
+            const progressText = document.getElementById(`progress-text-${teamKey}`);
+            
+            if (progressFill && progressText) {
+                progressFill.style.width = percentage + '%';
+                progressText.textContent = `${percentage}% concluído (${completedSteps}/${totalSteps} passos)`;
+            }
+        }
+
+        function openTool(toolName) {
+            switch(toolName) {
+                case 'Calculadora':
+                    openCalculator();
+                    break;
+                case 'Simulador':
+                    alert('🎮 Simulador será implementado em breve com cenários interativos!');
+                    break;
+                case 'Dicas':
+                    showTips();
+                    break;
+                case 'Contatos':
+                    showContacts();
+                    break;
+                case 'Lembrete':
+                    showReminders();
+                    break;
+                default:
+                    alert(`🛠️ Ferramenta "${toolName}" será implementada em breve!`);
+            }
+        }
+
+        function openCalculator() {
+            const valor = prompt('💰 Calculadora de Bonificações\n\nDigite o valor mensal do aditivo (ex: 750):');
+            const meses = prompt('Digite quantos meses de carência/desconto:');
+            
+            if (valor && meses && !isNaN(valor) && !isNaN(meses)) {
+                const total = parseFloat(valor) * parseInt(meses);
+                alert(`📊 Resultado da Calculadora:\n\n` +
+                      `💰 Valor mensal: R$ ${parseFloat(valor).toLocaleString('pt-BR', {minimumFractionDigits: 2})}\n` +
+                      `📅 Período: ${meses} meses\n` +
+                      `💯 Total a bonificar: R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}\n\n` +
+                      `💡 Ação: Lance uma bonificação de R$ ${parseFloat(valor).toLocaleString('pt-BR', {minimumFractionDigits: 2})} por ${meses} meses no sistema SERVICE`);
+            } else if (valor || meses) {
+                alert('❌ Por favor, digite valores numéricos válidos.');
+            }
+        }
+
+        function showTips() {
+            alert('💡 Dicas Importantes:\n\n' +
+                  '• Sempre use os modelos padrão - eles estão atualizados\n' +
+                  '• Configure lembretes mensais para o dia 10\n' +
+                  '• Seja específico nos comentários quando solicitar correções\n' +
+                  '• Marque como "assinado" imediatamente após confirmação\n' +
+                  '• Use o relatório de bonificações para acompanhar\n' +
+                  '• Em caso de dúvida, consulte antes de aprovar');
+        }
+
+        function showContacts() {
+            alert('📞 Contatos para Suporte:\n\n' +
+                  '🎯 Dúvidas sobre Aditivos:\n' +
+                  '   Time de Projetos: projetos@empresa.com\n\n' +
+                  '💰 Dúvidas sobre Bonificações:\n' +
+                  '   Gestores de Filial (até dia 10)\n\n' +
+                  '⚖️ Questões Jurídicas:\n' +
+                  '   Time Jurídico: juridico@empresa.com\n\n' +
+                  '📊 Suporte ao Sistema:\n' +
+                  '   Time de Faturamento: faturamento@empresa.com\n\n' +
+                  '🆘 Processo de Suporte:\n' +
+                  '1. Consulte primeiro a documentação\n' +
+                  '2. Verifique as POCs do seu setor\n' +
+                  '3. Entre em contato com o time responsável');
+        }
+
+        function showReminders() {
+            alert('📅 Configure Lembretes Automáticos:\n\n' +
+                  '📱 Sugestão de Agenda:\n' +
+                  '• Todo dia 5: Verificar aditivos do mês anterior\n' +
+                  '• Todo dia 8: Lembrete de prazo se aproximando\n' +
+                  '• Todo dia 10: PRAZO FINAL para bonificações!\n\n' +
+                  '⚠️ IMPORTANTE:\n' +
+                  'Bonificações não lançadas até dia 10 causam retrabalho no faturamento!\n\n' +
+                  '💡 Dica: Configure alarmes no seu celular ou sistema de agenda corporativa.');
+        }
+
+        // Fechar modal clicando fora
+        document.getElementById('teamModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Adicionar atalhos de teclado para os times
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        openTeamModal('solicitante');
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        openTeamModal('projetos');
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        openTeamModal('gerente');
+                        break;
+                    case '4':
+                        e.preventDefault();
+                        openTeamModal('juridico');
+                        break;
+                    case '5':
+                        e.preventDefault();
+                        openTeamModal('faturamento');
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

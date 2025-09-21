@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roteiro de Treinamento - Novo Processo de Faturamento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide h2 {
+            color: #2d3748;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .slide-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+        }
+
+        .problem-box {
+            background: linear-gradient(135deg, #fed7d7, #feb2b2);
+            border-left: 4px solid #e53e3e;
+        }
+
+        .solution-box {
+            background: linear-gradient(135deg, #c6f6d5, #9ae6b4);
+            border-left: 4px solid #38a169;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 4rem;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px dashed #4fd1c7;
+        }
+
+        .demo-step {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .demo-step.active {
+            display: block;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, #fef5e7, #fed7aa);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #744210;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .quiz-option.correct {
+            border-color: #38a169;
+            background: #c6f6d5;
+        }
+
+        .quiz-option.incorrect {
+            border-color: #e53e3e;
+            background: #fed7d7;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            color: white;
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fefcbf, #faf089);
+            border: 2px solid #d69e2e;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .process-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            position: relative;
+            min-width: 120px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-flow {
+                flex-direction: column;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Roteiro de Treinamento</h1>
+            <p>Novo Processo de Faturamento</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Slide 1: Introdução -->
+        <div class="slide active" data-slide="1">
+            <h2><span class="slide-icon">🚀</span> Bem-vindos ao Novo Processo!</h2>
+            
+            <div class="highlight-box">
+                <h3>🎯 Objetivo do Treinamento</h3>
+                <p>Capacitar toda a equipe para o novo processo de faturamento, eliminando a dependência de planilhas e centralizando tudo no ERP.</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-section problem-box">
+                    <h3>❌ Problemas Atuais</h3>
+                    <ul>
+                        <li>Dependência de planilhas</li>
+                        <li>Atrasos no faturamento</li>
+                        <li>Divergências de dados</li>
+                        <li>Erros percebidos pelos clientes</li>
+                        <li>Retrabalho constante</li>
+                    </ul>
+                </div>
+                <div class="content-section solution-box">
+                    <h3>✅ Nova Solução</h3>
+                    <ul>
+                        <li>ERP como fonte única</li>
+                        <li>Dados confiáveis e histórico</li>
+                        <li>Maior agilidade</li>
+                        <li>Redução de erros</li>
+                        <li>Processo padronizado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="process-flow">
+                <div class="flow-step">Aditivos</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Bonificações</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Faturamento</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Pilar 1 - Aditivos -->
+        <div class="slide" data-slide="2">
+            <h2><span class="slide-icon">📄</span> Pilar 1: Aditivos</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Solicitante cria orçamento no SERVICE</h4>
+                        <p>Usando modelos padrão, contemplando equipamentos e serviços</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">2</div>
+                    <div class="timeline-content">
+                        <h4>Preenche formulário de solicitação</h4>
+                        <p>Anexa o número do orçamento gerado</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">3</div>
+                    <div class="timeline-content">
+                        <h4>Time de Projetos valida tecnicamente</h4>
+                        <p>Verifica equipamentos Porter e licenças</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">4</div>
+                    <div class="timeline-content">
+                        <h4>Gerente valida comercialmente</h4>
+                        <p>Confirma se está de acordo com a negociação</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">5</div>
+                    <div class="timeline-content">
+                        <h4>Jurídico elabora contrato</h4>
+                        <p>E marca como "assinado" assim que confirmado</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>🎮 Demonstração Interativa</h3>
+                <div class="demo-step active" id="demo1-step1">
+                    <p><strong>Cenário:</strong> Cliente EDIFÍCIO PLENNO precisa de um aditivo de R$ 269,00</p>
+                    <button class="btn" onclick="nextDemoStep(1)">Ver como proceder →</button>
+                </div>
+                <div class="demo-step" id="demo1-step2">
+                    <p><strong>Ação:</strong> Solicitante acessa SERVICE → Cria orçamento → Usa modelo padrão</p>
+                    <button class="btn" onclick="nextDemoStep(1)">Próximo passo →</button>
+                </div>
+                <div class="demo-step" id="demo1-step3">
+                    <p><strong>Resultado:</strong> Sistema calcula automaticamente e não permite edição manual</p>
+                    <button class="btn" onclick="resetDemo(1)">Reiniciar demo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Pilar 2 - Bonificações -->
+        <div class="slide" data-slide="3">
+            <h2><span class="slide-icon">💰</span> Pilar 2: Bonificações</h2>
+            
+            <div class="highlight-box">
+                <h3>⏰ Prazo Crítico: Até o dia 10 de cada mês</h3>
+                <p>Gestores devem lançar bonificações para descontos e carências negociadas</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-section">
+                    <h4>📋 Quando usar bonificações?</h4>
+                    <ul>
+                        <li>Aditivos de retenção</li>
+                        <li>Períodos de carência</li>
+                        <li>Descontos negociados</li>
+                        <li>Valores que não devem impactar imediatamente</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h4>🔧 Como operacionalizar?</h4>
+                    <ul>
+                        <li>Jurídico baixa aditivo como "assinado"</li>
+                        <li>Gestor identifica necessidade de bonificação</li>
+                        <li>Lança no sistema SERVICE</li>
+                        <li>Define período de vigência</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>🎮 Exemplo Prático: Distribuição de Bonificação</h3>
+                <div class="demo-step active" id="demo2-step1">
+                    <p><strong>Cenário:</strong> Aditivo de R$ 269,00 com 6 meses de carência</p>
+                    <button class="btn" onclick="nextDemoStep(2)">Como bonificar? →</button>
+                </div>
+                <div class="demo-step" id="demo2-step2">
+                    <p><strong>Solução:</strong> Criar bonificação de R$ 269,00 por 6 meses</p>
+                    <p>Sistema distribui automaticamente: R$ 269,00 x 6 = R$ 1.614,00 total</p>
+                    <button class="btn" onclick="nextDemoStep(2)">Ver monitoramento →</button>
+                </div>
+                <div class="demo-step" id="demo2-step3">
+                    <p><strong>Acompanhamento:</strong> Relatórios > C - Monitoramento/Operacional > 9 - Bonificações</p>
+                    <button class="btn" onclick="resetDemo(2)">Reiniciar demo</button>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <h3>🧠 Teste seu conhecimento</h3>
+                <div class="quiz-question">Até qual dia do mês o gestor deve lançar as bonificações?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Até o dia 5</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Até o dia 10</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Até o dia 15</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Não há prazo definido</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Novo Cronograma -->
+        <div class="slide" data-slide="4">
+            <h2><span class="slide-icon">📅</span> Novo Cronograma Mensal</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">10</div>
+                    <div class="timeline-content">
+                        <h4>Até o dia 10</h4>
+                        <p><strong>Gestores:</strong> Lançam bonificações no sistema</p>
+                        <p><strong>Jurídico:</strong> Baixa aditivos como "assinados" (sempre que recebe)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">12</div>
+                    <div class="timeline-content">
+                        <h4>Dias 12-13</h4>
+                        <p><strong>Faturamento:</strong> Aplica reajustes necessários</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">13</div>
+                    <div class="timeline-content">
+                        <h4>Ainda no dia 13</h4>
+                        <p><strong>Faturamento:</strong> Gera relatório em lote e encaminha aos gestores</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">15</div>
+                    <div class="timeline-content">
+                        <h4>A partir do dia 15</h4>
+                        <p><strong>Execução:</strong> Faturamento com dados confiáveis do ERP</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🎯 Benefícios do Novo Cronograma</h3>
+                <ul>
+                    <li><strong>Confiabilidade:</strong> Dados sempre atualizados no ERP</li>
+                    <li><strong>Previsibilidade:</strong> Cronograma fixo e conhecido por todos</li>
+                    <li><strong>Segurança:</strong> Fim dos riscos bancários</li>
+                    <li><strong>Eficiência:</strong> Time pode focar em análises e melhorias</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Responsabilidades por Time -->
+        <div class="slide" data-slide="5">
+            <h2><span class="slide-icon">👥</span> Responsabilidades por Time</h2>
+            
+            <div class="content-grid">
+                <div class="content-section">
+                    <h4>🎯 Solicitante</h4>
+                    <ul>
+                        <li>Criar orçamento no SERVICE</li>
+                        <li>Preencher formulário de solicitação</li>
+                        <li>Usar modelos padrão</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h4>🔧 Time de Projetos</h4>
+                    <ul>
+                        <li>Validação técnica do escopo</li>
+                        <li>Verificar equipamentos Porter</li>
+                        <li>Aprovar ou solicitar correções</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h4>💼 Gerente Responsável</h4>
+                    <ul>
+                        <li>Validação comercial</li>
+                        <li>Confirmar negociação</li>
+                        <li>Autorizar envio ao Jurídico</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h4>⚖️ Time Jurídico</h4>
+                    <ul>
+                        <li>Elaborar contrato aditivo</li>
+                        <li>Marcar como "assinado" imediatamente</li>
+                        <li>Não mais evitar baixar aditivos</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h4>🏢 Gestor da Filial</h4>
+                    <ul>
+                        <li>Lançar bonificações até dia 10</li>
+                        <li>Garantir reflexo do escopo negociado</li>
+                        <li>Monitorar relatórios</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h4>📊 Time de Faturamento</h4>
+                    <ul>
+                        <li>Conferir dados do ERP</li>
+                        <li>Extrair relatórios</li>
+                        <li>Focar em análises e melhorias</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Exercício Prático -->
+        <div class="slide" data-slide="6">
+            <h2><span class="slide-icon">🎯</span> Exercício Prático</h2>
+            
+            <div class="interactive-demo">
+                <h3>🏢 Caso: Condomínio Vila Real</h3>
+                <div class="demo-step active" id="demo3-step1">
+                    <p><strong>Situação:</strong> Cliente quer adicionar 5 câmeras (R$ 150,00/mês cada) com 3 meses de carência</p>
+                    <p><strong>Pergunta:</strong> Qual o primeiro passo?</p>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn" onclick="showStep3Answer(1)" style="margin-right: 1rem;">Criar orçamento no SERVICE</button>
+                        <button class="btn" onclick="showStep3Answer(2)" style="margin-right: 1rem;">Ligar para o Jurídico</button>
+                        <button class="btn" onclick="showStep3Answer(3)">Enviar email para Projetos</button>
+                    </div>
+                </div>
+                <div class="demo-step" id="demo3-step2">
+                    <p id="step3-feedback"></p>
+                    <button class="btn" onclick="nextDemoStep(3)">Continuar →</button>
+                </div>
+                <div class="demo-step" id="demo3-step3">
+                    <p><strong>Agora:</strong> Orçamento criado. O que o gestor deve fazer após a assinatura?</p>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn" onclick="showBonusAnswer(1)" style="margin-right: 1rem;">Nada, valor será cobrado automaticamente</button>
+                        <button class="btn" onclick="showBonusAnswer(2)">Lançar bonificação de R$ 750 por 3 meses</button>
+                    </div>
+                </div>
+                <div class="demo-step" id="demo3-step4">
+                    <p id="bonus-feedback"></p>
+                    <button class="btn" onclick="resetDemo(3)">Reiniciar exercício</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Conclusão -->
+        <div class="slide" data-slide="7">
+            <h2><span class="slide-icon">🏆</span> Conclusão e Próximos Passos</h2>
+            
+            <div class="highlight-box">
+                <h3>🎉 Parabéns! Você completou o treinamento</h3>
+                <p>Agora você está preparado para utilizar o novo processo de faturamento</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-section solution-box">
+                    <h4>✅ O que você aprendeu</h4>
+                    <ul>
+                        <li>Novo fluxo de aditivos no SERVICE</li>
+                        <li>Como lançar bonificações corretamente</li>
+                        <li>Cronograma mensal de faturamento</li>
+                        <li>Responsabilidades de cada time</li>
+                        <li>Benefícios do novo processo</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h4>📚 Próximos Passos</h4>
+                    <ul>
+                        <li>Consulte a documentação para detalhes</li>
+                        <li>Use os POCs setoriais no dia a dia</li>
+                        <li>Verifique a Matriz RACI quando necessário</li>
+                        <li>Pratique com casos reais</li>
+                        <li>Tire dúvidas com sua liderança</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="process-flow" style="margin: 2rem 0;">
+                <div class="flow-step">📖 Documentação</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">⚡ Matriz RACI</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">🔧 POCs Setoriais</div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn" onclick="window.close()" style="font-size: 1.2rem; padding: 1.5rem 3rem;">
+                    🎯 Finalizar Treinamento
+                </button>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="btn" id="prevBtn" onclick="changeSlide(-1)" disabled>
+                ← Anterior
+            </button>
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">7</span>
+            </div>
+            <button class="btn" id="nextBtn" onclick="changeSlide(1)">
+                Próximo →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const totalSlides = 7;
+
+        function updateProgress() {
+            const progress = ((currentSlideIndex + 1) / totalSlides) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function updateSlideCounter() {
+            document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlideIndex === 0;
+            nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+            
+            if (currentSlideIndex === totalSlides - 1) {
+                nextBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'flex';
+            }
+        }
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            
+            slides[currentSlideIndex].classList.remove('active');
+            
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
+            
+            slides[currentSlideIndex].classList.add('active');
+            
+            updateProgress();
+            updateSlideCounter();
+            updateNavigation();
+        }
+
+        function nextDemoStep(demoNumber) {
+            const currentStep = document.querySelector(`#demo${demoNumber}-step1.active, #demo${demoNumber}-step2.active, #demo${demoNumber}-step3.active`);
+            if (!currentStep) return;
+            
+            currentStep.classList.remove('active');
+            
+            const stepNumber = parseInt(currentStep.id.slice(-1));
+            const nextStep = document.getElementById(`demo${demoNumber}-step${stepNumber + 1}`);
+            
+            if (nextStep) {
+                nextStep.classList.add('active');
+            }
+        }
+
+        function resetDemo(demoNumber) {
+            const allSteps = document.querySelectorAll(`[id^="demo${demoNumber}-step"]`);
+            allSteps.forEach(step => step.classList.remove('active'));
+            document.getElementById(`demo${demoNumber}-step1`).classList.add('active');
+        }
+
+        function checkAnswer(option, isCorrect) {
+            const allOptions = option.parentNode.querySelectorAll('.quiz-option');
+            allOptions.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+                if (opt === option) {
+                    opt.classList.add(isCorrect ? 'correct' : 'incorrect');
+                } else if (opt.onclick.toString().includes('true')) {
+                    opt.classList.add('correct');
+                }
+            });
+        }
+
+        function showStep3Answer(choice) {
+            const feedback = document.getElementById('step3-feedback');
+            if (choice === 1) {
+                feedback.innerHTML = '<strong style="color: #38a169;">✅ Correto!</strong> O primeiro passo é sempre criar o orçamento no SERVICE usando os modelos padrão.';
+            } else {
+                feedback.innerHTML = '<strong style="color: #e53e3e;">❌ Incorreto.</strong> O primeiro passo é criar o orçamento no SERVICE. O processo mudou!';
+            }
+            nextDemoStep(3);
+        }
+
+        function showBonusAnswer(choice) {
+            const feedback = document.getElementById('bonus-feedback');
+            if (choice === 2) {
+                feedback.innerHTML = '<strong style="color: #38a169;">✅ Perfeito!</strong> Como há 3 meses de carência, deve lançar bonificação de R$ 750,00 (5 × R$ 150) por 3 meses para compensar o valor que será cobrado automaticamente.';
+            } else {
+                feedback.innerHTML = '<strong style="color: #e53e3e;">❌ Incorreto.</strong> Como há carência negociada, é preciso lançar bonificação para compensar o valor que será cobrado automaticamente.';
+            }
+            document.getElementById('demo3-step4').classList.add('active');
+            document.getElementById('demo3-step3').classList.remove('active');
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            updateSlideCounter();
+            updateNavigation();
+            
+            // Atalhos do teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentSlideIndex > 0) {
+                    changeSlide(-1);
+                } else if (e.key === 'ArrowRight' && currentSlideIndex < totalSlides - 1) {
+                    changeSlide(1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>="timeline-icon">1</div>
+                    <div class

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação - Novo Processo de Faturamento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 320px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-box {
+            margin: 1.5rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            padding: 1rem 1.5rem 0.5rem;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: #2d3748;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: #f7fafc;
+            border-left-color: #667eea;
+            color: #667eea;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), transparent);
+            border-left-color: #667eea;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 320px;
+            padding: 2rem;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-header h1 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .section-header .breadcrumb {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .step-by-step {
+            margin-bottom: 3rem;
+        }
+
+        .step {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: 2rem;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .step h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .step p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .step ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .step li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            border: 2px solid #4fd1c7;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef5e7, #fed7aa);
+            border: 2px solid #ed8936;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .critical-box {
+            background: linear-gradient(135deg, #fed7d7, #feb2b2);
+            border: 2px solid #e53e3e;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            overflow-x: auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #667eea;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+            font-weight: 500;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quick-link {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .quick-link:hover {
+            transform: translateY(-5px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 200px; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .section-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        ☰ Menu
+    </button>
+
+    <div class="container">
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1>📖 Documentação</h1>
+                <p>Processo de Faturamento</p>
+            </div>
+
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Buscar na documentação..." oninput="searchContent(this.value)">
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Visão Geral</div>
+                <a href="#overview" class="nav-item active" onclick="showSection('overview')">Introdução</a>
+                <a href="#benefits" class="nav-item" onclick="showSection('benefits')">Benefícios</a>
+                <a href="#timeline" class="nav-item" onclick="showSection('timeline')">Cronograma</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Processos</div>
+                <a href="#aditivos" class="nav-item" onclick="showSection('aditivos')">Aditivos</a>
+                <a href="#bonificacoes" class="nav-item" onclick="showSection('bonificacoes')">Bonificações</a>
+                <a href="#faturamento" class="nav-item" onclick="showSection('faturamento')">Faturamento</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Guias Práticos</div>
+                <a href="#service-guide" class="nav-item" onclick="showSection('service-guide')">Sistema SERVICE</a>
+                <a href="#bonificacao-guide" class="nav-item" onclick="showSection('bonificacao-guide')">Lançar Bonificações</a>
+                <a href="#relatorios" class="nav-item" onclick="showSection('relatorios')">Relatórios</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Suporte</div>
+                <a href="#faq" class="nav-item" onclick="showSection('faq')">Perguntas Frequentes</a>
+                <a href="#troubleshooting" class="nav-item" onclick="showSection('troubleshooting')">Solução de Problemas</a>
+                <a href="#contacts" class="nav-item" onclick="showSection('contacts')">Contatos</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <!-- Seção Overview -->
+            <section class="content-section active" id="overview">
+                <div class="section-header">
+                    <h1>🚀 Introdução</h1>
+                    <p class="breadcrumb">Visão Geral > Introdução</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Objetivo do Novo Processo</h3>
+                    <p>Otimizar a eficiência, reduzir retrabalho e aumentar a segurança no faturamento, fazendo a transição da dependência de planilhas para o sistema ERP como fonte única de verdade.</p>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>📋 O que mudou?</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Fonte de Dados</h3>
+                        <p><strong>Antes:</strong> Planilhas manuais como base do faturamento</p>
+                        <p><strong>Agora:</strong> ERP como fonte central e exclusiva</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Processo de Aditivos</h3>
+                        <p><strong>Antes:</strong> Projetista montava o orçamento</p>
+                        <p><strong>Agora:</strong> Solicitante cria orçamento no SERVICE antes de solicitar</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Gestão de Bonificações</h3>
+                        <p><strong>Antes:</strong> Gestão manual e descentralizada</p>
+                        <p><strong>Agora:</strong> Lançamento obrigatório até dia 10 no sistema</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Papel do Jurídico</h3>
+                        <p><strong>Antes:</strong> Evitava baixar aditivos por medo de erros</p>
+                        <p><strong>Agora:</strong> Marca como "assinado" imediatamente após confirmação</p>
+                    </div>
+                </div>
+
+                <div class="critical-box">
+                    <h3>⚠️ Pontos Críticos de Atenção</h3>
+                    <ul>
+                        <li><strong>Prazo:</strong> Bonificações devem ser lançadas até dia 10</li>
+                        <li><strong>Jurídico:</strong> Baixar aditivos imediatamente após assinatura</li>
+                        <li><strong>ERP:</strong> É a única fonte confiável para faturamento</li>
+                        <li><strong>Planilhas:</strong> Não são mais utilizadas no processo</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Seção Benefits -->
+            <section class="content-section" id="benefits">
+                <div class="section-header">
+                    <h1>✨ Benefícios</h1>
+                    <p class="breadcrumb">Visão Geral > Benefícios</p>
+                </div>
+
+                <div class="quick-links">
+                    <div class="quick-link">
+                        <h3>📊 Confiabilidade</h3>
+                        <p>Dados sempre atualizados e histórico completo no ERP</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>⚡ Agilidade</h3>
+                        <p>Processo mais rápido sem dependência de planilhas</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>🛡️ Segurança</h3>
+                        <p>Fim dos riscos bancários e retenções</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>🎯 Padronização</h3>
+                        <p>Processo único e consistente em toda empresa</p>
+                    </div>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>🏆 Impactos Positivos por Time</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">💼</div>
+                        <h3>Gestores</h3>
+                        <ul>
+                            <li>Maior controle sobre bonificações</li>
+                            <li>Visibilidade em tempo real dos dados</li>
+                            <li>Relatórios automáticos e precisos</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">⚖️</div>
+                        <h3>Time Jurídico</h3>
+                        <ul>
+                            <li>Eliminação do medo de baixar aditivos</li>
+                            <li>Processo mais seguro e confiável</li>
+                            <li>Redução de retrabalho</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">📊</div>
+                        <h3>Time de Faturamento</h3>
+                        <ul>
+                            <li>Foco em análises ao invés de digitação</li>
+                            <li>Dados sempre confiáveis</li>
+                            <li>Tempo para melhorias do processo</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">👥</div>
+                        <h3>Clientes</h3>
+                        <ul>
+                            <li>Menos erros em cobranças</li>
+                            <li>Maior precisão nas faturas</li>
+                            <li>Processo mais ágil</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Aditivos -->
+            <section class="content-section" id="aditivos">
+                <div class="section-header">
+                    <h1>📄 Processo de Aditivos</h1>
+                    <p class="breadcrumb">Processos > Aditivos</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🔄 Mudança Fundamental</h3>
+                    <p>A partir de agora, <strong>todo aditivo deverá ter seu orçamento previamente criado pelo solicitante no sistema SERVICE</strong>, contemplando todos os escopos: serviços de mão de obra e itens para implantação.</p>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>📋 Passo a Passo Completo</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Solicitante - Criar Orçamento</h3>
+                        <p><strong>Local:</strong> Sistema SERVICE → Operacional/Vendas → B - Orçamentos → A - Orçamentos (Cadastro/Alteração)</p>
+                        <ul>
+                            <li>Selecionar tipo: "Aditivo feito pelo time de CS (Retenção de clientes)" → Validação por Iane</li>
+                            <li>Definir modalidade como "Locação"</li>
+                            <li>Usar modelos de orçamento padrão da franqueadora</li>
+                            <li>Adicionar/remover equipamentos na aba "Produtos"</li>
+                            <li>Marcar opção "Cobrar" se aplicável</li>
+                            <li>Na aba "Produtos a Retirar", adicionar equipamentos a serem removidos</li>
+                            <li>Na aba "Serviços", adicionar "INSTALAÇÃO POR PONTOS" se necessário</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Solicitante - Preencher Formulário</h3>
+                        <p>Preencher o <strong>Formulário de Solicitação de Aditivo</strong> informando:</p>
+                        <ul>
+                            <li>Dados essenciais da proposta</li>
+                            <li>Número do orçamento gerado no SERVICE</li>
+                            <li>Observações importantes na seção "Observações Internas"</li>
+                        </ul>
+                        <div class="code-block">
+                            Link do Formulário: [Formulário de Solicitação de Aditivos]
+                            → Gera ticket automático no Movidesk para o time de Projetos
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Time de Projetos - Validação Técnica</h3>
+                        <p>Ao receber o ticket, realizar validação técnica focando em:</p>
+                        <ul>
+                            <li>Equipamentos Porter</li>
+                            <li>Licenças vinculadas à matriz</li>
+                            <li>Viabilidade técnica do escopo</li>
+                        </ul>
+                        <p><strong>Se necessárias correções:</strong> Retornar ao solicitante via ticket</p>
+                        <p><strong>Se aprovado:</strong> Adicionar gerente responsável em cópia e informar validação</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Gerente - Validação Comercial</h3>
+                        <ul>
+                            <li>Validar se orçamento corresponde ao negociado</li>
+                            <li>Verificar valores, prazos e condições</li>
+                            <li>Autorizar envio ao time jurídico via fechamento do orçamento</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <h3>Jurídico - Contrato e Baixa</h3>
+                        <ul>
+                            <li>Elaborar contrato aditivo com base no orçamento aprovado</li>
+                            <li><strong>CRÍTICO:</strong> Assim que cliente assinar, marcar imediatamente como "assinado" no ERP</li>
+                            <li>Não mais evitar baixar aditivos por receio</li>
+                        </ul>
+                        
+                        <div class="critical-box">
+                            <strong>⚠️ ATENÇÃO JURÍDICO:</strong> A ação mais importante é marcar o aditivo como "assinado" imediatamente após confirmação da assinatura. Isso é fundamental para o novo processo!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Bonificações -->
+            <section class="content-section" id="bonificacoes">
+                <div class="section-header">
+                    <h1>💰 Sistema de Bonificações</h1>
+                    <p class="breadcrumb">Processos > Bonificações</p>
+                </div>
+
+                <div class="critical-box">
+                    <h3>⏰ PRAZO CRÍTICO</h3>
+                    <p><strong>Gestores devem lançar bonificações até o dia 10 de cada mês!</strong></p>
+                    <p>Bonificações não lançadas no prazo causarão retrabalho no faturamento.</p>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>🎯 Quando Usar Bonificações</h2>
+                    <div class="step">
+                        <div class="step-number">🎁</div>
+                        <h3>Situações que Requerem Bonificação</h3>
+                        <ul>
+                            <li><strong>Aditivos de retenção</strong> com períodos de carência</li>
+                            <li><strong>Descontos negociados</strong> em valores mensais</li>
+                            <li><strong>Valores que não devem impactar imediatamente</strong> a mensalidade</li>
+                            <li><strong>Promoções temporárias</strong> com prazo determinado</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>📋 Como Lançar Bonificações</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Identificar Necessidade</h3>
+                        <p>Após o jurídico baixar um aditivo como "assinado", verificar se há:</p>
+                        <ul>
+                            <li>Período de carência negociado</li>
+                            <li>Desconto temporário acordado</li>
+                            <li>Promoção com prazo específico</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Acessar Sistema SERVICE</h3>
+                        <p><strong>Caminho:</strong> Sistema SERVICE → Tela de "Lançamentos de Bonificações"</p>
+                        <div class="code-block">
+                            Menu: [Caminho específico no SERVICE]
+                            Tela: Lançamentos de Bonificações
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Configurar Bonificação</h3>
+                        <ul>
+                            <li><strong>Valor:</strong> Inserir valor mensal a ser bonificado</li>
+                            <li><strong>Período:</strong> Definir quantidade de meses</li>
+                            <li><strong>Distribuição:</strong> Sistema calcula automaticamente</li>
+                        </ul>
+                        
+                        <div class="info-box">
+                            <h4>💡 Exemplo Prático</h4>
+                            <p><strong>Situação:</strong> Aditivo de R$ 269,00 com 6 meses de carência</p>
+                            <p><strong>Ação:</strong> Lançar bonificação de R$ 269,00 por 6 meses</p>
+                            <p><strong>Resultado:</strong> R$ 269,00 × 6 = R$ 1.614,00 distribuídos automaticamente</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Acompanhar e Monitorar</h3>
+                        <p><strong>Relatório:</strong> Relatórios > C - Monitoramento/Operacional > 9 - Bonificações de Clientes</p>
+                        <p>O relatório mostra:</p>
+                        <ul>
+                            <li>Descrição da bonificação</li>
+                            <li>Datas de geração e liberação</li>
+                            <li>Valores e status de faturamento</li>
+                            <li>Detalhes da transação</li>
+                            <li>Usuário responsável</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção FAQ -->
+            <section class="content-section" id="faq">
+                <div class="section-header">
+                    <h1>❓ Perguntas Frequentes</h1>
+                    <p class="breadcrumb">Suporte > Perguntas Frequentes</p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>O que acontece se eu esquecer de lançar a bonificação até o dia 10?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Se a bonificação não for lançada até o dia 10, o cliente será cobrado pelo valor integral do aditivo, causando retrabalho para o time de faturamento. É fundamental respeitar esse prazo!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Posso ainda usar planilhas para controle interno?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para controle interno, você pode usar planilhas, mas o faturamento será baseado exclusivamente nos dados do ERP. Recomendamos migrar totalmente para os relatórios do sistema.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Como o jurídico deve proceder com aditivos antigos?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aditivos já assinados devem ser marcados como "assinado" no sistema imediatamente. Não há mais necessidade de evitar esta ação - o sistema está preparado para gerenciar corretamente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>E se o cliente cancelar após o aditivo ser baixado?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O sistema permite reversões e ajustes. Entre em contato com o time de faturamento para procedimentos específicos de cancelamento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Posso editar valores no orçamento após criado?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Os valores são calculados automaticamente pelo sistema com base no orçamento original e não podem ser editados manualmente. Se necessário ajuste, o orçamento deve ser refeito.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Contatos -->
+            <section class="content-section" id="contacts">
+                <div class="section-header">
+                    <h1>📞 Contatos e Suporte</h1>
+                    <p class="breadcrumb">Suporte > Contatos</p>
+                </div>
+
+                <div class="quick-links">
+                    <div class="quick-link">
+                        <h3>🎯 Dúvidas sobre Aditivos</h3>
+                        <p>Time de Projetos</p>
+                        <p><strong>Email:</strong> projetos@empresa.com</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>💰 Dúvidas sobre Bonificações</h3>
+                        <p>Gestores de Filial</p>
+                        <p><strong>Prazo:</strong> Até dia 10</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>⚖️ Questões Jurídicas</h3>
+                        <p>Time Jurídico</p>
+                        <p><strong>Email:</strong> juridico@empresa.com</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>📊 Suporte ao Sistema</h3>
+                        <p>Time de Faturamento</p>
+                        <p><strong>Email:</strong> faturamento@empresa.com</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>🔄 Processo de Suporte</h3>
+                    <ol>
+                        <li>Consulte primeiro esta documentação</li>
+                        <li>Verifique as POCs do seu setor</li>
+                        <li>Entre em contato com o time responsável</li>
+                        <li>Para emergências, acione sua liderança direta</li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let currentSection = 'overview';
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
+
+            currentSection = sectionId;
+            
+            // Close mobile menu if open
+            document.getElementById('sidebar').classList.remove('mobile-open');
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span:last-child');
+            
+            answer.classList.toggle('active');
+            icon.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+
+        function searchContent(query) {
+            const sections = document.querySelectorAll('.content-section');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            if (!query) {
+                navItems.forEach(item => item.style.display = 'block');
+                return;
+            }
+
+            navItems.forEach(item => {
+                const sectionId = item.getAttribute('onclick').match(/'([^']+)'/)[1];
+                const section = document.getElementById(sectionId);
+                const text = section.textContent.toLowerCase();
+                
+                if (text.includes(query.toLowerCase())) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.querySelector('.mobile-menu-toggle');
+            
+            if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                sidebar.classList.remove('mobile-open');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('overview');
+        });
+    </script>
+</body>
+</html>
