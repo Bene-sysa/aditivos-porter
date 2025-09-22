@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentação - Novo Processo de Faturamento</title>
+    <title>Documentação - Novo Processo de Aditivos</title>
     <style>
         * {
             margin: 0;
@@ -344,7 +344,7 @@
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h1>📖 Documentação</h1>
-                <p>Processo de Faturamento</p>
+                <p>Processo de Aditivos</p>
             </div>
 
             <div class="search-box">
@@ -361,7 +361,7 @@
 
             <div class="nav-section">
                 <div class="nav-title">Processos</div>
-                <a href="#aditivos" class="nav-item" onclick="showSection('aditivos')">Aditivos</a>
+                <a href="#aditivos" class="nav-item" onclick="showSection('aditivos')">Processo de Aditivos</a>
                 <a href="#bonificacoes" class="nav-item" onclick="showSection('bonificacoes')">Bonificações</a>
                 <a href="#faturamento" class="nav-item" onclick="showSection('faturamento')">Faturamento</a>
             </div>
@@ -391,7 +391,7 @@
 
                 <div class="info-box">
                     <h3>🎯 Objetivo do Novo Processo</h3>
-                    <p>Otimizar a eficiência, reduzir retrabalho e aumentar a segurança no faturamento, fazendo a transição da dependência de planilhas para o sistema ERP como fonte única de verdade.</p>
+                    <p>Otimizar a eficiência, reduzir retrabalho e aumentar a segurança no faturamento, fazendo a transição da dependência de planilhas para o sistema ERP como fonte de dados confiáveis.</p>
                 </div>
 
                 <div class="step-by-step">
@@ -408,7 +408,7 @@
                         <div class="step-number">2</div>
                         <h3>Processo de Aditivos</h3>
                         <p><strong>Antes:</strong> Projetista montava o orçamento</p>
-                        <p><strong>Agora:</strong> Solicitante cria orçamento no SERVICE antes de solicitar</p>
+                        <p><strong>Agora:</strong> Filial cria orçamento no SERVICE e encaminha solicitação via ticket</p>
                     </div>
 
                     <div class="step">
@@ -421,7 +421,7 @@
                     <div class="step">
                         <div class="step-number">4</div>
                         <h3>Papel do Jurídico</h3>
-                        <p><strong>Antes:</strong> Evitava baixar aditivos por medo de erros</p>
+                        <p><strong>Antes:</strong> Evitava baixar aditivos por receio de subir valores errados às mensalidades</p>
                         <p><strong>Agora:</strong> Marca como "assinado" imediatamente após confirmação</p>
                     </div>
                 </div>
@@ -431,7 +431,7 @@
                     <ul>
                         <li><strong>Prazo:</strong> Bonificações devem ser lançadas até dia 10</li>
                         <li><strong>Jurídico:</strong> Baixar aditivos imediatamente após assinatura</li>
-                        <li><strong>ERP:</strong> É a única fonte confiável para faturamento</li>
+                        <li><strong>ERP:</strong> Deve ser a fonte confiável de dados</li>
                         <li><strong>Planilhas:</strong> Não são mais utilizadas no processo</li>
                     </ul>
                 </div>
@@ -517,7 +517,7 @@
 
                 <div class="info-box">
                     <h3>🔄 Mudança Fundamental</h3>
-                    <p>A partir de agora, <strong>todo aditivo deverá ter seu orçamento previamente criado pelo solicitante no sistema SERVICE</strong>, contemplando todos os escopos: serviços de mão de obra e itens para implantação.</p>
+                    <p>A partir de agora, <strong>todo aditivo deverá ter seu orçamento previamente criado pelo solicitante no sistema SERVICE</strong>, contemplando os escopos: serviços de mão de obra + produtos de implantação + Equipamentos Porter.</p>
                 </div>
 
                 <div class="step-by-step">
@@ -525,12 +525,12 @@
                     
                     <div class="step">
                         <div class="step-number">1</div>
-                        <h3>Solicitante - Criar Orçamento</h3>
+                        <h3>Filial - Criar Orçamento</h3>
                         <p><strong>Local:</strong> Sistema SERVICE → Operacional/Vendas → B - Orçamentos → A - Orçamentos (Cadastro/Alteração)</p>
                         <ul>
-                            <li>Definir tipo do orçamento: "Orçamento CS"</li>
+                            <li>Definir tipo do orçamento</li>
                             <li>Definir modalidade como "Locação"</li>
-                            <li>Usar modelos de orçamento padrão da franqueadora</li>
+                            <li>Usar modelos de orçamento padrão</li>
                             <li>Adicionar/remover PRODUTOS e Equipamentos Porter na aba "Produtos"</li>
                             <li>Na aba "Produtos a Retirar", adicionar equipamentos a serem removidos</li>
                             <li>Na aba "Serviços", adicionar "INSTALAÇÃO POR PONTOS"</li>
@@ -548,8 +548,8 @@
                             <li>Anexos solicitados (Atas, Anexo 3, etc..)</li>
                         </ul>
                         <div class="code-block">
-                            Link do Formulário: [https://portergroup.movidesk.com/form/9312/]
-                            → Gera ticket automático no Movidesk para o time de Projetos
+                            Link do Formulário: https://portergroup.movidesk.com/form/9312/
+                            → Gera ticket no Movidesk para o time de Projetos
                         </div>
                     </div>
 
@@ -583,6 +583,20 @@
                             <li>Elaborar contrato aditivo com base no orçamento aprovado</li>
                             <li><strong>CRÍTICO:</strong> Assim que cliente assinar, marcar imediatamente como "assinado" no ERP</li>
                             <li>Não mais evitar baixar aditivos por receio</li>
+                        </ul>
+                        
+                        <div class="critical-box">
+                            <strong>⚠️ ATENÇÃO:</strong> Ao marcar o aditivo como "assinado" o sistema altera imediatamente os valores previstos pelo aditivo, o lançamento das bonificações deve ser feito o quanto antes.
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                        <div class="step-number">6</div>
+                        <h3>Gestor - Lançar Bonificações</h3>
+                        <ul>
+                            <li>Será notificado via e-mail ao receber assinatura do contrato.</li>
+                            <li><strong>CRÍTICO:</strong> Lançar bonificações até dia 10.</li>
+                            <li>Acompanhar Bonificações pelos Relatórios do ERP</li>
                         </ul>
                         
                         <div class="critical-box">
@@ -951,8 +965,6 @@
                             <li>Estas observações NÃO aparecem na versão impressa do orçamento.</li>
                         </ul>
                     </div>
-                </div>
-
                 <div class="warning-box">
                     <h3>⚠️ Pontos de Atenção</h3>
                     <ul>
