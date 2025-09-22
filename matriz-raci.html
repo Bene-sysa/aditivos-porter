@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matriz RACI - Novo Processo de Faturamento</title>
+    <title>Matriz RACI - Novo Processo de Aditivos</title>
     <style>
         * {
             margin: 0;
@@ -380,29 +380,29 @@
     <div class="container">
         <div class="header">
             <h1>⚡ Matriz RACI</h1>
-            <p class="subtitle">Responsabilidades no Novo Processo de Faturamento</p>
+            <p class="subtitle">Responsabilidades no Novo Processo de Aditivos</p>
         </div>
 
         <div class="controls">
             <div class="filter-group">
                 <label>Filtrar por Time:</label>
                 <select class="filter-select" id="teamFilter" onchange="filterByTeam()">
-                    <option value="">Todos os Times</option>
-                    <option value="solicitante">Solicitante</option>
-                    <option value="projetos">Time de Projetos</option>
-                    <option value="gerente">Gerente da Filial</option>
-                    <option value="juridico">Time Jurídico</option>
-                    <option value="faturamento">Time de Faturamento (Matriz)</option>
+                    <option value="">Todos</option>
+                    <option value="solicitante">Filial</option>
+                    <option value="projetos">Projetos</option>
+                    <option value="gerente">Gestores</option>
+                    <option value="juridico">Jurídico</option>
+                    <option value="faturamento">Faturamento (Matriz)</option>
                 </select>
             </div>
             <div class="filter-group">
                 <label>Filtrar por Responsabilidade:</label>
                 <select class="filter-select" id="raciFilter" onchange="filterByRACI()">
                     <option value="">Todas</option>
-                    <option value="R">Responsável (R)</option>
-                    <option value="A">Accountable (A)</option>
-                    <option value="C">Consultado (C)</option>
-                    <option value="I">Informado (I)</option>
+                    <option value="R">Executor (R)</option>
+                    <option value="A">Quem Aprova (A)</option>
+                    <option value="C">Quem deve ser Consultado (C)</option>
+                    <option value="I">Quem deve ser Informado (I)</option>
                 </select>
             </div>
         </div>
@@ -414,7 +414,7 @@
             </div>
             <div class="legend-item">
                 <div class="legend-badge A">A</div>
-                <span>Accountable (Responde pela tarefa, aprova)</span>
+                <span>Quem Aprova (Responde pela tarefa, aprova)</span>
             </div>
             <div class="legend-item">
                 <div class="legend-badge C">C</div>
@@ -435,18 +435,20 @@
             <table class="raci-table">
                 <thead>
                     <tr>
-                        <th>Atividade do Processo</th>
-                        <th>Solicitante</th>
-                        <th>Time de Projetos</th>
-                        <th>Gerente da Filial</th>
-                        <th>Time Jurídico</th>
-                        <th>Time de Faturamento (Matriz)</th>
+                        <th>Atividade/th>
+                        <th>Filial</th>
+                        <th>Projetos</th>
+                        <th>Jurídico</th>
+                        <th>Gerente CS</th>
+                        <th>Gestores</th>
+                        <th></th>
+                        <th>Faturamento (Matriz)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="activity-row" data-activity="orcamento">
-                        <td><strong>1. Criação do Orçamento no SERVICE</strong></td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Cria orçamento no SERVICE usando modelos padrão')">R</span></td>
+                        <td><strong>1. Criação do Orçamento no ERP</strong></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Cria orçamento no ERP usando modelos padrão')">R</span></td>
                         <td><span class="raci-badge C" onclick="showTooltip(event, 'Precisa ser consultado sobre viabilidade técnica')">C</span></td>
                         <td><span class="raci-badge I" onclick="showTooltip(event, 'Precisa ser informado sobre o orçamento criado')">I</span></td>
                         <td>-</td>
@@ -456,14 +458,13 @@
                         <td><strong>2. Validação Técnica do Orçamento</strong></td>
                         <td><span class="raci-badge C" onclick="showTooltip(event, 'Pode ser consultado para esclarecimentos')">C</span></td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Responsável por validar tecnicamente o escopo')">R</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre o resultado da validação')">I</span></td>
+                        <td>-</td>
                         <td>-</td>
                         <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="validacao-comercial">
-                        <td><strong>3. Validação Comercial e Aprovação</strong></td>
+                        <td><strong>3. Fechamento do Orçamento</strong></td>
                         <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre aprovação ou rejeição')">I</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre a decisão comercial')">I</span></td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Valida se orçamento corresponde ao negociado')">R</span></td>
                         <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado para preparar contrato')">I</span></td>
                         <td>-</td>
