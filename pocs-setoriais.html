@@ -668,16 +668,16 @@
                 </div>
                 <div class="team-stats">
                     <div class="stat">
-                        <div class="stat-number">12</div>
+                        <div class="stat-number">7</div>
                         <div class="stat-label">Passos</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">DIA 10</div>
+                        <div class="stat-number">Dia 10</div>
                         <div class="stat-label">Prazo</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">CRÍTICO</div>
-                        <div class="stat-label">Prioridade</div>
+                        <div class="stat-number">Processo Final</div>
+                        <div class="stat-label">Etapa</div>
                     </div>
                 </div>
                 <div class="team-preview">
@@ -691,7 +691,7 @@
                     </div>
                     <div class="preview-item">
                         <div class="preview-icon alert">⏰</div>
-                        <span>Prazo crítico: dia 10!</span>
+                        <span>Prazo para lançamento: dia 10!</span>
                     </div>
                     <button class="action-btn">
                         <span>Acessar Guia</span>
@@ -732,7 +732,7 @@
                     </div>
                     <div class="preview-item">
                         <div class="preview-icon alert">⚠️</div>
-                        <span>Mudança de mindset</span>
+                        <span>Gatilho para Mudança de valores mensais</span>
                     </div>
                     <button class="action-btn">
                         <span>Acessar Guia</span>
@@ -746,7 +746,7 @@
                 <div class="team-header">
                     <div class="team-icon faturamento">📊</div>
                     <h3 class="team-title">Time de Faturamento</h3>
-                    <p class="team-subtitle">Conferência + Análises</p>
+                    <p class="team-subtitle">Faturamento + Cobranças</p>
                 </div>
                 <div class="team-stats">
                     <div class="stat">
@@ -754,11 +754,11 @@
                         <div class="stat-label">Etapas</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Ferramentas</div>
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Ferramenta</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">MENSAL</div>
+                        <div class="stat-number">Rotina Mensal</div>
                         <div class="stat-label">Ciclo</div>
                     </div>
                 </div>
@@ -868,7 +868,7 @@
                 alert: null,
                 steps: [
                     {
-                        title: "Receber notificação de validação",
+                        title: "Receber Ticket",
                         description: "Aguardar ticket automático do Movidesk",
                         details: "O sistema gera automaticamente um ticket quando há orçamento para validação"
                     },
@@ -888,19 +888,19 @@
                         details: "Avaliar se a implementação é tecnicamente viável e factível"
                     },
                     {
-                        title: "Decidir: Aprovar ou Solicitar Correções",
+                        title: "Aprovar ou Solicitar Correções",
                         description: "Tomar decisão baseada na análise técnica",
                         details: "Se necessárias correções, retornar ao solicitante com comentários claros via ticket"
-                    },
-                    {
-                        title: "Se aprovado: Adicionar gerente responsável",
-                        description: "Incluir o gerente no fluxo de aprovação",
-                        details: "Colocar o gerente responsável em cópia no ticket para prosseguir"
                     },
                     {
                         title: "Informar validação concluída",
                         description: "Comunicar que o escopo foi validado tecnicamente",
                         details: "Registrar no ticket que a validação técnica foi concluída com sucesso"
+                    },
+                    {
+                        title: "Se aprovado: Encaminhar ticket ao gerente responsável",
+                        description: "Incluir o gerente no fluxo de aprovação",
+                        details: "Colocá-lo como responsável no ticket para prosseguir"
                     }
                 ],
                 tools: [
@@ -989,7 +989,7 @@
                     {
                         title: "Comunicar no ticket aberto",
                         description: "Informar sobre a baixa do aditivo",
-                        details: "Informar gestor da filial (para possível bonificação) e time de faturamento"
+                        details: "Essa ação notifica o gestor da filial (para possível bonificação)"
                     }
                 ],
                 tools: [
@@ -1004,7 +1004,7 @@
                 alert: "✨ NOVA REALIDADE: Foco em conferência de dados confiáveis e análises estratégicas",
                 steps: [
                     {
-                        title: "Aguardar até dia 11",
+                        title: "Aguardar até dia 10",
                         description: "Respeitar o prazo das bonificações",
                         details: "Gestores têm até dia 10 para lançar todas as bonificações necessárias"
                     },
@@ -1014,24 +1014,14 @@
                         details: "Aplicar reajustes contratuais anuais diretamente no sistema ERP"
                     },
                     {
-                        title: "Dia 13: Gerar relatório em lote",
+                        title: "Dia 13: Encaminhar relatório do Lote de Faturamento",
                         description: "Criar relatório completo para conferência",
-                        details: "Gerar relatório contemplando valores mensais menos bonificações aplicadas"
-                    },
-                    {
-                        title: "Dia 13: Encaminhar relatório aos gestores",
-                        description: "Distribuir para conferência final",
-                        details: "Enviar relatório aos gestores para conferência final antes da execução"
+                        details: "Gerar relatório com valores a serem faturados, contemplando bonificações aplicadas. Ainda no dia 13, enviar aos gestores."
                     },
                     {
                         title: "A partir do dia 15: Executar faturamento",
                         description: "Processar com dados 100% confiáveis",
                         details: "Executar faturamento final com base em dados totalmente confiáveis do ERP"
-                    },
-                    {
-                        title: "Focar em análises e melhorias",
-                        description: "Dedicar tempo para otimizações",
-                        details: "Usar tempo liberado para análises estratégicas e otimizações do processo"
                     }
                 ],
                 tools: [
