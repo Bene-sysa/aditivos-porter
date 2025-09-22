@@ -449,8 +449,8 @@
                     <tr class="activity-row" data-activity="orcamento">
                         <td><strong>1. Criação do Orçamento no ERP</strong></td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Cria orçamento no ERP usando modelos padrão')">R</span></td>
-                        <td><span class="raci-badge C" onclick="showTooltip(event, 'Precisa ser consultado sobre viabilidade técnica')">C</span></td>
                         <td><span class="raci-badge I" onclick="showTooltip(event, 'Precisa ser informado sobre o orçamento criado')">I</span></td>
+                        <td>-</td>
                         <td>-</td>
                         <td><span class="raci-badge A" onclick="showTooltip(event, 'Aprova negociações previamente, durante negociação.')">A</span></td>
                         <td>-</td>
@@ -484,7 +484,7 @@
                     </tr>
                     <tr class="activity-row" data-activity="baixa-aditivo">
                         <td><strong>5. Baixa do Aditivo como "Assinado"</strong></td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Informado sobre a baixa, está em cópia')">I</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre a baixa, está em cópia')">I</span></td>
                         <td>-</td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'CRÍTICO: Marca como assinado imediatamente após confirmação')">R</span></td>
                         <td>-</td>
@@ -506,8 +506,7 @@
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
+                        <td><span class="raci-badge C" onclick="showTooltip(event, 'Deve ser consultado sobre reajuste de serviços')">C</span></td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa reajustes nos dias 12-13')">R</span></td>
                     </tr>
                     <tr class="activity-row" data-activity="relatorios">
@@ -517,7 +516,6 @@
                         <td>-</td>
                         <td>-</td>
                         <td><span class="raci-badge A" onclick="showTooltip(event, 'Deve Aprovar os relatórios para conferir dados')">A</span></td>
-                        <td>-</td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Gera e distribui relatórios no dia 13')">R</span></td>
                     </tr>
                     <tr class="activity-row" data-activity="faturamento-final">
@@ -544,7 +542,7 @@
                         <div class="responsibility-tags">
                             <span class="responsibility-tag R">Filial - Responsável</span>
                             <span class="responsibility-tag C">Projetos - Consultado</span>
-                            <span class="responsibility-tag I">Gerente - Informado</span>
+                            <span class="responsibility-tag A">Gestor - Aprovou Previamente</span>
                         </div>
                     </div>
                 </div>
@@ -556,8 +554,8 @@
                         <p>Verifica equipamentos Porter e licenças vinculadas à matriz</p>
                         <div class="responsibility-tags">
                             <span class="responsibility-tag R">Projetos - Responsável</span>
-                            <span class="responsibility-tag C">Solicitante - Consultado</span>
-                            <span class="responsibility-tag I">Gerente - Informado</span>
+                            <span class="responsibility-tag C">Filial - Consultado</span>
+                            <span class="responsibility-tag I">Gerente - Informado em caso de aprovação</span>
                         </div>
                     </div>
                 </div>
@@ -565,12 +563,11 @@
                 <div class="timeline-item">
                     <div class="timeline-icon">3</div>
                     <div class="timeline-content">
-                        <h4>Gerente valida comercialmente e aprova</h4>
+                        <h4>Gerente Fecha orçamento</h4>
                         <p>Confirma se orçamento corresponde ao que foi negociado</p>
                         <div class="responsibility-tags">
                             <span class="responsibility-tag R">Gerente - Responsável</span>
-                            <span class="responsibility-tag I">Solicitante - Informado</span>
-                            <span class="responsibility-tag I">Projetos - Informado</span>
+                            <span class="responsibility-tag I">Filial - Informado</span>
                             <span class="responsibility-tag I">Jurídico - Informado</span>
                         </div>
                     </div>
@@ -583,7 +580,7 @@
                         <p>Com base no orçamento aprovado</p>
                         <div class="responsibility-tags">
                             <span class="responsibility-tag R">Jurídico - Responsável</span>
-                            <span class="responsibility-tag I">Todos - Informados</span>
+                            <span class="responsibility-tag I">Filial e Gestores - Informados</span>
                         </div>
                     </div>
                 </div>
@@ -591,12 +588,11 @@
                 <div class="timeline-item">
                     <div class="timeline-icon">5</div>
                     <div class="timeline-content">
-                        <h4><strong>CRÍTICO:</strong> Jurídico baixa aditivo como "assinado"</h4>
+                        <h4><strong>ATENÇÃO:</strong> Jurídico baixa aditivo como "assinado"</h4>
                         <p>Imediatamente após confirmação da assinatura</p>
                         <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Jurídico - Responsável</span>
-                            <span class="responsibility-tag I">Gerente - Informado</span>
-                            <span class="responsibility-tag I">Faturamento - Informado</span>
+                            <span class="responsibility-tag R">Jurídico - Responsável por baixa</span>
+                            <span class="responsibility-tag I">GESTOR e Filial - Informado PARA LANÇAR BONIFICAÇÃO</span>
                         </div>
                     </div>
                 </div>
@@ -607,9 +603,7 @@
                         <h4><strong>PRAZO CRÍTICO:</strong> Gestores lançam bonificações (até dia 10)</h4>
                         <p>Para casos de carência ou descontos negociados</p>
                         <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Gerente - Responsável</span>
-                            <span class="responsibility-tag C">Jurídico - Consultado</span>
-                            <span class="responsibility-tag I">Faturamento - Informado</span>
+                            <span class="responsibility-tag R">Gestor - Responsável</span>
                         </div>
                     </div>
                 </div>
@@ -621,8 +615,7 @@
                         <p>Aplica reajustes e processa dados no ERP</p>
                         <div class="responsibility-tags">
                             <span class="responsibility-tag R">Faturamento - Responsável</span>
-                            <span class="responsibility-tag C">Gerente - Consultado</span>
-                            <span class="responsibility-tag C">Jurídico - Consultado</span>
+                            <span class="responsibility-tag C">Gestor - Consultado</span>
                         </div>
                     </div>
                 </div>
