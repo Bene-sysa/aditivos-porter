@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentação - Novo Processo de Aditivos</title>
+    <title>Documentação - Novo Processo de Faturamento</title>
     <style>
         * {
             margin: 0;
@@ -224,14 +224,6 @@
             margin: 2rem 0;
         }
 
-        .highlight-box {
-            background: linear-gradient(135deg, #f0f4f8, #e2e8f0);
-            border: 2px solid #667eea;
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-
         .code-block {
             background: #1a202c;
             color: #e2e8f0;
@@ -352,7 +344,7 @@
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h1>📖 Documentação</h1>
-                <p>Processo de Aditivos</p>
+                <p>Processo de Faturamento</p>
             </div>
 
             <div class="search-box">
@@ -369,7 +361,7 @@
 
             <div class="nav-section">
                 <div class="nav-title">Processos</div>
-                <a href="#aditivos" class="nav-item" onclick="showSection('aditivos')">Processo de Aditivos</a>
+                <a href="#aditivos" class="nav-item" onclick="showSection('aditivos')">Aditivos</a>
                 <a href="#bonificacoes" class="nav-item" onclick="showSection('bonificacoes')">Bonificações</a>
                 <a href="#faturamento" class="nav-item" onclick="showSection('faturamento')">Faturamento</a>
             </div>
@@ -399,7 +391,7 @@
 
                 <div class="info-box">
                     <h3>🎯 Objetivo do Novo Processo</h3>
-                    <p>Otimizar a eficiência, reduzir retrabalho e aumentar a segurança no faturamento, fazendo a transição da dependência de planilhas para o sistema ERP como fonte de dados confiáveis.</p>
+                    <p>Otimizar a eficiência, reduzir retrabalho e aumentar a segurança no faturamento, fazendo a transição da dependência de planilhas para o sistema ERP como fonte única de verdade.</p>
                 </div>
 
                 <div class="step-by-step">
@@ -416,7 +408,7 @@
                         <div class="step-number">2</div>
                         <h3>Processo de Aditivos</h3>
                         <p><strong>Antes:</strong> Projetista montava o orçamento</p>
-                        <p><strong>Agora:</strong> Filial cria orçamento no SERVICE e encaminha solicitação via ticket</p>
+                        <p><strong>Agora:</strong> Solicitante cria orçamento no SERVICE antes de solicitar</p>
                     </div>
 
                     <div class="step">
@@ -429,7 +421,7 @@
                     <div class="step">
                         <div class="step-number">4</div>
                         <h3>Papel do Jurídico</h3>
-                        <p><strong>Antes:</strong> Evitava baixar aditivos por receio de subir valores errados às mensalidades</p>
+                        <p><strong>Antes:</strong> Evitava baixar aditivos por medo de erros</p>
                         <p><strong>Agora:</strong> Marca como "assinado" imediatamente após confirmação</p>
                     </div>
                 </div>
@@ -439,7 +431,7 @@
                     <ul>
                         <li><strong>Prazo:</strong> Bonificações devem ser lançadas até dia 10</li>
                         <li><strong>Jurídico:</strong> Baixar aditivos imediatamente após assinatura</li>
-                        <li><strong>ERP:</strong> Deve ser a fonte confiável de dados</li>
+                        <li><strong>ERP:</strong> É a única fonte confiável para faturamento</li>
                         <li><strong>Planilhas:</strong> Não são mais utilizadas no processo</li>
                     </ul>
                 </div>
@@ -525,7 +517,7 @@
 
                 <div class="info-box">
                     <h3>🔄 Mudança Fundamental</h3>
-                    <p>A partir de agora, <strong>todo aditivo deverá ter seu orçamento previamente criado pelo solicitante no sistema SERVICE</strong>, contemplando os escopos: serviços de mão de obra + produtos de implantação + Equipamentos Porter.</p>
+                    <p>A partir de agora, <strong>todo aditivo deverá ter seu orçamento previamente criado pelo solicitante no sistema SERVICE</strong>, contemplando todos os escopos: serviços de mão de obra e itens para implantação.</p>
                 </div>
 
                 <div class="step-by-step">
@@ -533,12 +525,12 @@
                     
                     <div class="step">
                         <div class="step-number">1</div>
-                        <h3>Filial - Criar Orçamento</h3>
+                        <h3>Solicitante - Criar Orçamento</h3>
                         <p><strong>Local:</strong> Sistema SERVICE → Operacional/Vendas → B - Orçamentos → A - Orçamentos (Cadastro/Alteração)</p>
                         <ul>
-                            <li>Definir tipo do orçamento</li>
+                            <li>Definir tipo do orçamento: "Orçamento CS"</li>
                             <li>Definir modalidade como "Locação"</li>
-                            <li>Usar modelos de orçamento padrão</li>
+                            <li>Usar modelos de orçamento padrão da franqueadora</li>
                             <li>Adicionar/remover PRODUTOS e Equipamentos Porter na aba "Produtos"</li>
                             <li>Na aba "Produtos a Retirar", adicionar equipamentos a serem removidos</li>
                             <li>Na aba "Serviços", adicionar "INSTALAÇÃO POR PONTOS"</li>
@@ -556,8 +548,8 @@
                             <li>Anexos solicitados (Atas, Anexo 3, etc..)</li>
                         </ul>
                         <div class="code-block">
-                            Link do Formulário: https://portergroup.movidesk.com/form/9312/
-                            → Gera ticket no Movidesk para o time de Projetos
+                            Link do Formulário: [https://portergroup.movidesk.com/form/9312/]
+                            → Gera ticket automático no Movidesk para o time de Projetos
                         </div>
                     </div>
 
@@ -591,20 +583,6 @@
                             <li>Elaborar contrato aditivo com base no orçamento aprovado</li>
                             <li><strong>CRÍTICO:</strong> Assim que cliente assinar, marcar imediatamente como "assinado" no ERP</li>
                             <li>Não mais evitar baixar aditivos por receio</li>
-                        </ul>
-                        
-                        <div class="critical-box">
-                            <strong>⚠️ ATENÇÃO:</strong> Ao marcar o aditivo como "assinado" o sistema altera imediatamente os valores previstos pelo aditivo, o lançamento das bonificações deve ser feito o quanto antes.
-                        </div>
-                    </div>
-
-                    <div class="step">
-                        <div class="step-number">6</div>
-                        <h3>Gestor - Lançar Bonificações</h3>
-                        <ul>
-                            <li>Será notificado via e-mail ao receber assinatura do contrato.</li>
-                            <li><strong>CRÍTICO:</strong> Lançar bonificações até dia 10.</li>
-                            <li>Acompanhar Bonificações pelos Relatórios do ERP</li>
                         </ul>
                         
                         <div class="critical-box">
@@ -712,4 +690,635 @@
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Se a bonificação não for lançada até o dia 10,
+                        <p>Se a bonificação não for lançada até o dia 10, o cliente será cobrado pelo valor integral do aditivo, causando retrabalho para o time de faturamento. É fundamental respeitar esse prazo!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Posso ainda usar planilhas para controle interno?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para controle interno, você pode usar planilhas, mas o faturamento será baseado exclusivamente nos dados do ERP. Recomendamos migrar totalmente para os relatórios do sistema.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Como o jurídico deve proceder com aditivos antigos?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aditivos já assinados devem ser marcados como "assinado" no sistema imediatamente. Não há mais necessidade de evitar esta ação - o sistema está preparado para gerenciar corretamente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>E se o cliente cancelar após o aditivo ser baixado?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O sistema permite reversões e ajustes. Entre em contato com o time de faturamento para procedimentos específicos de cancelamento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Posso editar valores no orçamento após criado?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Os valores são calculados automaticamente pelo sistema com base no orçamento original e não podem ser editados manualmente. Se necessário ajuste, o orçamento deve ser refeito.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Timeline -->
+            <section class="content-section" id="timeline">
+                <div class="section-header">
+                    <h1>📅 Cronograma Mensal</h1>
+                    <p class="breadcrumb">Visão Geral > Cronograma</p>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>📋 Cronograma Detalhado do Processo</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">10</div>
+                        <h3>Até o dia 10 - Preparação Crítica</h3>
+                        <p><strong>Gestores da Filial:</strong> Lançam todas as bonificações necessárias no sistema SERVICE</p>
+                        <p><strong>Time Jurídico:</strong> Continua baixando aditivos como "assinado" sempre que recebe confirmação</p>
+                        <div class="warning-box">
+                            <strong>⏰ Prazo Crítico:</strong> Bonificações não lançadas até o dia 10 causarão retrabalho no faturamento!
+                        </div>
+                        <ul>
+                            <li>Verificar aditivos assinados no mês anterior</li>
+                            <li>Identificar necessidade de bonificações (carência, descontos)</li>
+                            <li>Lançar bonificações com valores e períodos corretos</li>
+                            <li>Confirmar salvamento no sistema</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">12</div>
+                        <h3>Dias 12-13 - Processamento</h3>
+                        <p><strong>Time de Faturamento:</strong> Processamento de dados e aplicação de reajustes</p>
+                        <ul>
+                            <li>Aplica reajustes contratuais anuais no sistema</li>
+                            <li>Processa ajustes finais de valores</li>
+                            <li>Prepara base de dados para faturamento</li>
+                            <li>Executa rotinas de validação de dados</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">13</div>
+                        <h3>Final do dia 13 - Relatórios</h3>
+                        <p><strong>Time de Faturamento:</strong> Geração e distribuição de relatórios</p>
+                        <ul>
+                            <li>Gera relatório de faturamento em lote</li>
+                            <li>Inclui valores mensais menos bonificações aplicadas</li>
+                            <li>Encaminha relatório aos gestores para conferência</li>
+                            <li>Aguarda validação final dos gestores</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">15</div>
+                        <h3>A partir do dia 15 - Execução</h3>
+                        <p><strong>Faturamento Final:</strong> Processamento com dados 100% confiáveis</p>
+                        <ul>
+                            <li>Execução baseada em dados totalmente validados do ERP</li>
+                            <li>Sem necessidade de ajustes manuais</li>
+                            <li>Processo automatizado e seguro</li>
+                            <li>Monitoramento de eventuais divergências</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Faturamento -->
+            <section class="content-section" id="faturamento">
+                <div class="section-header">
+                    <h1>💰 Processo de Faturamento</h1>
+                    <p class="breadcrumb">Processos > Faturamento</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>✨ Nova Realidade do Faturamento</h3>
+                    <p>O time de faturamento faz a <strong>conferência de dados via ERP.</strong></p>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>🔄 Fluxo Mensal de Faturamento</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">📅</div>
+                        <h3>Aguardar Bonificações (até dia 10)</h3>
+                        <p>Respeitar o prazo dos gestores para lançamento de bonificações.</p>
+                        <ul>
+                            <li>Gerar Lista de Faturamento</li>
+                            <li>Encaminhar Lista de Faturamento às unidades pelos canais oficiais</li>
+                            <li>Conferir endereçamentos</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">📊</div>
+                        <h3>Rodar Reajustes (dias 12-13)</h3>
+                        <p>Processar reajustes contratuais anuais diretamente no ERP</p>
+                        <ul>
+                            <li>Aplicar percentuais de reajuste por categoria de contrato</li>
+                            <li>Validar cálculos automáticos do sistema</li>
+                            <li>Conferir Novos Valores</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">📋</div>
+                        <h3>Geração de Relatórios (dia 13)</h3>
+                        <p>Relatório consolidado para conferência final</p>
+                        <ul>
+                            <li>Extrair relatório completo do ERP</li>
+                            <li>Incluir valores mensais já deduzidas as bonificações</li>
+                            <li>Distribuir aos gestores para conferência</li>
+                            <li>Endereçar correções finais.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">🚀</div>
+                        <h3>Faturar! (a partir do dia 15)</h3>
+                        <p>Faturamento com base em dados 100% validados</p>
+                        <ul>
+                            <li>Executar faturamento.</li>
+                            <li>Monitorar processo para identificar exceções.</li>
+                            <li>Gerar relatórios de acompanhamento.</li>
+                            <li>Encaminhar e-mails de cobrança.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>🎯 Benefícios da Nova Abordagem</h3>
+                    <ul>
+                        <li><strong>Eliminação de Planilhas:</strong> Dados direto do ERP, sem retrabalho</li>
+                        <li><strong>Maior Confiabilidade:</strong> Fonte única de verdade</li>
+                        <li><strong>Tempo para Análises:</strong> Foco em insights e melhorias</li>
+                        <li><strong>Redução de Erros:</strong> Processo automatizado e validado</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Seção SERVICE Guide -->
+            <section class="content-section" id="service-guide">
+                <div class="section-header">
+                    <h1>🖥️ Guia do Sistema SERVICE</h1>
+                    <p class="breadcrumb">Guias Práticos > Sistema SERVICE</p>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>🎯 Criação de Orçamentos para Aditivos</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Acessar o Sistema</h3>
+                        <p><strong>Caminho:</strong> Operacional/Vendas → B - Orçamentos → A - Orçamentos (Cadastro/Alteração)</p>
+                        <div class="code-block">
+                            Navegação: [Menu Principal] → [Operacional/Vendas] → [B - Orçamentos] → [A - Orçamentos]
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Configurar Tipo de Orçamento</h3>
+                        <ul>
+                            <li><strong>Tipo:</strong> "Aditivo feito pelo time de CS (Retenção de clientes)"</li>
+                            <li><strong>Modalidade:</strong> Caso tenha equipamentos Porter, Locação.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Usar Modelos Padrão</h3>
+                        <p>Sempre utilizar os modelos pré-gravados como base do seu orçamento</p>
+                        <div class="info-box">
+                            <h4>💡 Por que usar modelos padrão?</h4>
+                            <p>Os modelos estão sempre atualizados com as configurações corretas e reduzem drasticamente a chance de erros, além de otimizar seu tempo!</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Configurar Produtos</h3>
+                        <p><strong>Aba "Produtos":</strong></p>
+                        <ul>
+                            <li>Adicionar equipamentos que serão vendidos/locados</li>
+                            <li>Marcar opção "COBRAR" apenas naquilo que será VENDIDO ao cliente</li>
+                            <li>Verificar quantidades e especificações</li>
+                        </ul>
+                        <p><strong>Aba "Produtos a Retirar":</strong></p>
+                        <ul>
+                            <li>Listar equipamentos que serão removidos do condomínio</li>
+                            <li>Especificar quantidade dos equipamentos</li>
+                            <div class="info-box">
+                            <h4>💡 Time de Projetos</h4>
+                            <p>O time de projetos validará os equipamentos listados!</p>
+                        </div>
+                    </div>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <h3>Configurar Serviços</h3>
+                        <p><strong>Aba "Serviços":</strong></p>
+                        <ul>
+                            <li>Adicionar "INSTALAÇÃO POR PONTOS", marcar o checkbox "COBRAR" em casos de não cobrança da mão de obra.</li>
+                            <li>Valor é calculado automaticamente pelo sistema</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <h3>Observações Importantes</h3>
+                        <p><strong>Aba "Observações":</strong></p>
+                        <ul>
+                            <li>Usar seção "Observações Internas do Orçamento"</li>
+                            <li>Informações importantes para as demais equipes que darão continuidade no processo.</li>
+                            <li>Estas observações NÃO aparecem na versão impressa do orçamento.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>⚠️ Pontos de Atenção</h3>
+                    <ul>
+                        <li>Valores mensais, na aba de fechamento,<strong> não devem ser preenchidos manualmente</strong></li>
+                        <li>Nesta Aba você deve preencher somente Prazo o vendedor do orçamento, condições e prazo de contrato a ser estendido.</li>
+                        <li>Sempre conferir antes de finalizar</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Seção Bonificação Guide -->
+            <section class="content-section" id="bonificacao-guide">
+                <div class="section-header">
+                    <h1>💰 Como Lançar Bonificações</h1>
+                    <p class="breadcrumb">Guias Práticos > Lançar Bonificações</p>
+                </div>
+
+                <div class="critical-box">
+                    <h3>⏰ PRAZO CRÍTICO</h3>
+                    <p><strong>Gestores devem lançar bonificações até o dia 10 de cada mês!</strong></p>
+                    <p>Bonificações não lançadas no prazo causarão retrabalho no faturamento.</p>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>📋 Processo Completo de Bonificação</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">🔍</div>
+                        <h3>Identificar Necessidade</h3>
+                        <p>Após o jurídico baixar um aditivo como "assinado", verificar se há necessidade de bonificação:</p>
+                        <ul>
+                            <li><strong>Período de carência:</strong> Cliente não pagará por X meses</li>
+                            <li><strong>Desconto temporário:</strong> Valor reduzido por período determinado</li>
+                            <li><strong>Promoção específica:</strong> Condição comercial negociada</li>
+                            <li><strong>Retenção comercial:</strong> Benefício para manter cliente</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">🖥️</div>
+                        <h3>Acessar Sistema SERVICE</h3>
+                        <p><strong>Caminho:</strong> Sistema SERVICE → Tela de "Lançamentos de Bonificações"</p>
+                        <div class="code-block">
+                            Navegação: [Menu Principal] → [Lançamentos de Bonificações]
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">⚙️</div>
+                        <h3>Configurar Bonificação</h3>
+                        <p><strong>Campos obrigatórios:</strong></p>
+                        <ul>
+                            <li><strong>Cliente:</strong> Selecionar cliente correto</li>
+                            <li><strong>Valor mensal:</strong> Valor que será bonificado por mês</li>
+                            <li><strong>Quantidade de meses:</strong> Por quantos meses a bonificação será aplicada</li>
+                            <li><strong>Data de início:</strong> Quando a bonificação começa a valer</li>
+                            <li><strong>Motivo:</strong> Descrição da razão da bonificação</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">🧮</div>
+                        <h3>Cálculo Automático</h3>
+                        <p>O sistema distribui automaticamente os valores:</p>
+                        <div class="info-box">
+                            <h4>💡 Exemplo Prático</h4>
+                            <p><strong>Situação:</strong> Aditivo de R$ 300,00 com 6 meses de carência</p>
+                            <p><strong>Configuração:</strong> Valor R$ 300,00 por 6 meses</p>
+                            <p><strong>Resultado:</strong> Sistema aplicará R$ 300,00 de bonificação por 6 meses consecutivos</p>
+                            <p><strong>Total bonificado:</strong> R$ 1.800,00 (R$ 300,00 × 6)</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">✅</div>
+                        <h3>Finalizar e Monitorar</h3>
+                        <ul>
+                            <li>Conferir todos os dados antes de salvar</li>
+                            <li>Confirmar o lançamento no sistema</li>
+                            <li>Anotar número de referência da bonificação</li>
+                            <li>Verificar aplicação no relatório de acompanhamento</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Relatórios -->
+            <section class="content-section" id="relatorios">
+                <div class="section-header">
+                    <h1>📊 Relatórios do Sistema</h1>
+                    <p class="breadcrumb">Guias Práticos > Relatórios</p>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>📋 Principais Relatórios Utilizados</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">💰</div>
+                        <h3>Relatório de Bonificações de Clientes</h3>
+                        <p><strong>Caminho:</strong> Relatórios → C - Monitoramento/Operacional → 9 - Bonificações de Clientes</p>
+                        <p><strong>Informações exibidas:</strong></p>
+                        <ul>
+                            <li><strong>Descrição da bonificação:</strong> Tipo e motivo</li>
+                            <li><strong>Datas:</strong> Geração, liberação e vigência</li>
+                            <li><strong>Valores:</strong> Valor da bonificação e valor da nota fiscal</li>
+                            <li><strong>Status:</strong> Se foi faturada e se o valor foi integral</li>
+                            <li><strong>Detalhes:</strong> Empresa, número da NF e data de emissão</li>
+                            <li><strong>Responsável:</strong> Usuário que liberou a bonificação</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">📈</div>
+                        <h3>Relatório de Faturamento em Lote</h3>
+                        <p><strong>Uso:</strong> Gerado pelo time de faturamento no dia 13</p>
+                        <p><strong>Conteúdo:</strong></p>
+                        <ul>
+                            <li>Valores mensais de todos os clientes</li>
+                            <li>Bonificações aplicadas no período</li>
+                            <li>Reajustes processados</li>
+                            <li>Valores líquidos para faturamento</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">⚖️</div>
+                        <h3>Relatório de Aditivos por Status</h3>
+                        <p><strong>Finalidade:</strong> Acompanhar aditivos em cada etapa do processo</p>
+                        <p><strong>Status disponíveis:</strong></p>
+                        <ul>
+                            <li><strong>Em elaboração:</strong> Orçamento sendo criado</li>
+                            <li><strong>Em validação:</strong> Com time de projetos</li>
+                            <li><strong>Aprovado comercialmente:</strong> Com jurídico</li>
+                            <li><strong>Contrato elaborado:</strong> Aguardando assinatura</li>
+                            <li><strong>Assinado:</strong> Ativo para faturamento</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>🔍 Como Usar os Relatórios</h3>
+                    <ul>
+                        <li><strong>Gestores:</strong> Monitorem bonificações ativas e verificar se estão sendo aplicadas corretamente</li>
+                        <li><strong>Jurídico:</strong> Acompanhar status dos aditivos e garantir que estão sendo baixados</li>
+                        <li><strong>Faturamento:</strong> Extrair dados consolidados para processamento mensal</li>
+                        <li><strong>Projetos:</strong> Verificar aditivos pendentes de validação técnica</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Seção Troubleshooting -->
+            <section class="content-section" id="troubleshooting">
+                <div class="section-header">
+                    <h1>🔧 Solução de Problemas</h1>
+                    <p class="breadcrumb">Suporte > Solução de Problemas</p>
+                </div>
+
+                <div class="step-by-step">
+                    <h2>❓ Problemas Comuns e Soluções</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">❌</div>
+                        <h3>Bonificação não aparece no faturamento</h3>
+                        <p><strong>Possíveis causas:</strong></p>
+                        <ul>
+                            <li>Bonificação lançada após dia 10</li>
+                            <li>Data de início incorreta</li>
+                            <li>Cliente incorreto selecionado</li>
+                            <li>Valor zerado ou inválido</li>
+                        </ul>
+                        <p><strong>Solução:</strong></p>
+                        <ul>
+                            <li>Verificar relatório de bonificações</li>
+                            <li>Conferir dados da bonificação lançada</li>
+                            <li>Contatar time de faturamento se necessário</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">⚠️</div>
+                        <h3>Aditivo não reflete no valor da mensalidade</h3>
+                        <p><strong>Possíveis causas:</strong></p>
+                        <ul>
+                            <li>Jurídico não baixou como "assinado"</li>
+                            <li>Orçamento com erro de configuração</li>
+                            <li>Problema de sincronização do sistema</li>
+                        </ul>
+                        <p><strong>Solução:</strong></p>
+                        <ul>
+                            <li>Verificar status do aditivo no sistema</li>
+                            <li>Confirmar com jurídico se foi baixado</li>
+                            <li>Revisar configuração do orçamento original</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">🔄</div>
+                        <h3>Divergência entre ERP e Faturamento</h3>
+                        <p><strong>Possíveis causas:</strong></p>
+                        <ul>
+                            <li>Dados não sincronizados</li>
+                            <li>Bonificação aplicada incorretamente</li>
+                            <li>Reajuste não processado</li>
+                        </ul>
+                        <p><strong>Solução:</strong></p>
+                        <ul>
+                            <li>Aguardar sincronização automática</li>
+                            <li>Verificar logs de processamento</li>
+                            <li>Escalar para time técnico se persistir</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">📋</div>
+                        <h3>Orçamento rejeitado na validação técnica</h3>
+                        <p><strong>Possíveis causas:</strong></p>
+                        <ul>
+                            <li>Equipamentos incompatíveis</li>
+                            <li>Licenças indisponíveis</li>
+                            <li>Escopo técnico inviável</li>
+                        </ul>
+                        <p><strong>Solução:</strong></p>
+                        <ul>
+                            <li>Revisar comentários do time de projetos</li>
+                            <li>Ajustar especificações conforme orientação</li>
+                            <li>Resubmeter para nova validação</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="critical-box">
+                    <h3>🆘 Quando Escalar</h3>
+                    <ul>
+                        <li><strong>Urgente:</strong> Problemas que impedem faturamento</li>
+                        <li><strong>Alto:</strong> Divergências de valores superiores a R$ 1.000</li>
+                        <li><strong>Médio:</strong> Processos travados há mais de 2 dias úteis</li>
+                        <li><strong>Baixo:</strong> Dúvidas sobre procedimentos</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Seção Contatos -->
+            <section class="content-section" id="contacts">
+                <div class="section-header">
+                    <h1>📞 Contatos e Suporte</h1>
+                    <p class="breadcrumb">Suporte > Contatos</p>
+                </div>
+
+                <div class="quick-links">
+                    <div class="quick-link">
+                        <h3>🎯 Dúvidas sobre Aditivos</h3>
+                        <p>Time de Projetos</p>
+                        <p><strong>Email:</strong> projetos@empresa.com</p>
+                        <p><strong>Ramal:</strong> 2500</p>
+                        <p><strong>Horário:</strong> 8h às 18h</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>💰 Dúvidas sobre Bonificações</h3>
+                        <p>Gestores de Filial</p>
+                        <p><strong>Lembrete:</strong> Prazo até dia 10</p>
+                        <p><strong>Suporte:</strong> Área Comercial</p>
+                        <p><strong>Ramal:</strong> 2100</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>⚖️ Questões Jurídicas</h3>
+                        <p>Time Jurídico</p>
+                        <p><strong>Email:</strong> juridico@empresa.com</p>
+                        <p><strong>Ramal:</strong> 2300</p>
+                        <p><strong>Urgências:</strong> WhatsApp (11) 99999-9999</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>📊 Suporte ao Sistema</h3>
+                        <p>Time de Faturamento</p>
+                        <p><strong>Email:</strong> faturamento@empresa.com</p>
+                        <p><strong>Ramal:</strong> 2400</p>
+                        <p><strong>Plantão:</strong> 24/7 para emergências</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>🔧 Suporte Técnico</h3>
+                        <p>TI / Sistemas</p>
+                        <p><strong>Email:</strong> suporte@empresa.com</p>
+                        <p><strong>Ramal:</strong> 2000</p>
+                        <p><strong>Chat:</strong> Portal interno</p>
+                    </div>
+                    <div class="quick-link">
+                        <h3>👥 Recursos Humanos</h3>
+                        <p>Treinamentos e Capacitação</p>
+                        <p><strong>Email:</strong> rh@empresa.com</p>
+                        <p><strong>Ramal:</strong> 2600</p>
+                        <p><strong>Agendamento:</strong> Portal RH</p>
+                    </div>
+        </main>
+    </div>
+
+    <script>
+        let currentSection = 'overview';
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
+
+            currentSection = sectionId;
+            
+            // Close mobile menu if open
+            document.getElementById('sidebar').classList.remove('mobile-open');
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span:last-child');
+            
+            answer.classList.toggle('active');
+            icon.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+
+        function searchContent(query) {
+            const sections = document.querySelectorAll('.content-section');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            if (!query) {
+                navItems.forEach(item => item.style.display = 'block');
+                return;
+            }
+
+            navItems.forEach(item => {
+                const sectionId = item.getAttribute('onclick').match(/'([^']+)'/)[1];
+                const section = document.getElementById(sectionId);
+                const text = section.textContent.toLowerCase();
+                
+                if (text.includes(query.toLowerCase())) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.querySelector('.mobile-menu-toggle');
+            
+            if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                sidebar.classList.remove('mobile-open');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('overview');
+        });
+    </script>
+</body>
+</html>
