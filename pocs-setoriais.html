@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POCs Setoriais - Novo Processo de Faturamento</title>
+    <title>POCs Setoriais - Novo Processo de Aditivos</title>
     <style>
         * {
             margin: 0;
@@ -573,7 +573,7 @@
     <div class="container">
         <div class="header">
             <h1>🔧 POCs Setoriais</h1>
-            <p class="subtitle">Guias práticos específicos para cada setor no novo processo de faturamento</p>
+            <p class="subtitle">Guias práticos específicos para cada setor no novo processo de Aditivos</p>
         </div>
 
         <div class="teams-grid">
@@ -581,17 +581,17 @@
             <div class="team-card" onclick="openTeamModal('solicitante')">
                 <div class="team-header">
                     <div class="team-icon solicitante">🎯</div>
-                    <h3 class="team-title">Solicitante</h3>
+                    <h3 class="team-title">Filial</h3>
                     <p class="team-subtitle">Criação de orçamentos no SERVICE</p>
                 </div>
                 <div class="team-stats">
                     <div class="stat">
                         <div class="stat-number">10</div>
-                        <div class="stat-label">Passos</div>
+                        <div class="stat-label">Atividades</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Ferramentas</div>
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Telas</div>
                     </div>
                     <div class="stat">
                         <div class="stat-number">15min</div>
@@ -609,7 +609,7 @@
                     </div>
                     <div class="preview-item">
                         <div class="preview-icon alert">⚠️</div>
-                        <span>Modelos padrão obrigatórios</span>
+                        <span>Modelos de orçamento padrão pré-Definidos</span>
                     </div>
                     <button class="action-btn">
                         <span>Acessar Guia</span>
@@ -623,7 +623,7 @@
                 <div class="team-header">
                     <div class="team-icon projetos">🔧</div>
                     <h3 class="team-title">Time de Projetos</h3>
-                    <p class="team-subtitle">Validação técnica de orçamentos</p>
+                    <p class="team-subtitle">Validação técnica de Equipamentos</p>
                 </div>
                 <div class="team-stats">
                     <div class="stat">
@@ -635,8 +635,8 @@
                         <div class="stat-label">Validações</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">10min</div>
-                        <div class="stat-label">Duração</div>
+                        <div class="stat-number">Expertise Técnica</div>
+                        <div class="stat-label">Função</div>
                     </div>
                 </div>
                 <div class="team-preview">
@@ -915,11 +915,6 @@
                 alert: "⏰ PRAZO CRÍTICO: DIA 10! Você tem até o dia 10 de cada mês para lançar todas as bonificações.",
                 steps: [
                     {
-                        title: "Receber orçamento para validação comercial",
-                        description: "Analisar orçamento validado tecnicamente",
-                        details: "Receber ticket com orçamento que já passou pela validação técnica do time de Projetos"
-                    },
-                    {
                         title: "Confirmar valores negociados",
                         description: "Verificar se valores correspondem ao negociado",
                         details: "Conferir se o orçamento corresponde exatamente ao que foi negociado com o cliente"
@@ -930,24 +925,14 @@
                         details: "Verificar períodos de carência, descontos ou outras condições especiais"
                     },
                     {
-                        title: "Aprovar para o Jurídico",
-                        description: "Autorizar envio para elaboração do contrato",
-                        details: "Fechar o orçamento para autorizar o envio ao time jurídico"
-                    },
-                    {
-                        title: "Verificar aditivos assinados no mês anterior",
-                        description: "Identificar aditivos que precisam de bonificação",
-                        details: "Verificar quais aditivos foram baixados como \"assinados\" pelo Jurídico"
-                    },
-                    {
                         title: "Identificar necessidade de bonificações",
                         description: "Analisar quais aditivos têm condições especiais",
                         details: "Identificar aditivos com carência, descontos ou promoções negociadas"
                     },
                     {
-                        title: "Acessar sistema SERVICE",
+                        title: "Acessar tela de Bonificação do ERP",
                         description: "Navegar para o módulo de bonificações",
-                        details: "Ir para o módulo de \"Lançamentos de Bonificações\" no sistema"
+                        details: "Menu: Monitoramento > C - Despesas/Bonificações > Bonificações de Clientes Tela: Lançamentos de Bonificações a Clientes"
                     },
                     {
                         title: "Configurar valor da bonificação",
@@ -960,20 +945,10 @@
                         details: "Especificar por quantos meses a bonificação deve ser aplicada"
                     },
                     {
-                        title: "Confirmar distribuição automática",
-                        description: "Verificar cálculo do sistema",
-                        details: "O sistema calculará automaticamente a distribuição mensal dos valores"
-                    },
-                    {
-                        title: "Salvar bonificação",
+                        title: "Lançar bonificação",
                         description: "Confirmar o lançamento no sistema",
                         details: "Finalizar e salvar a bonificação no sistema para processamento"
                     },
-                    {
-                        title: "Verificar relatório de acompanhamento",
-                        description: "Monitorar bonificações lançadas",
-                        details: "Acessar: Relatórios > C - Monitoramento/Operacional > 9 - Bonificações de Clientes"
-                    }
                 ],
                 tools: [
                     { icon: "🧮", title: "Calculadora", description: "Calcule bonificações rapidamente" },
@@ -983,8 +958,8 @@
             },
             juridico: {
                 title: "⚖️ Time Jurídico",
-                subtitle: "Mudança fundamental: NÃO TENHA MAIS MEDO de marcar aditivos como 'assinado'!",
-                alert: "🚨 AÇÃO MAIS CRÍTICA: Marcar aditivo como 'assinado' no ERP IMEDIATAMENTE após confirmação da assinatura.",
+                subtitle: "Mudança fundamental: Aditivos alteram mensalidades assim que assinados!",
+                alert: "🚨: Marcar aditivo como 'assinado' no ERP no mesmo dia da confirmação da assinatura.",
                 steps: [
                     {
                         title: "Receber solicitação aprovada",
@@ -1002,17 +977,17 @@
                         details: "Enviar contrato seguindo o processo padrão de envio e acompanhamento"
                     },
                     {
-                        title: "⚠️ CRÍTICO: Confirmar assinatura",
+                        title: "⚠️: Confirmar assinatura",
                         description: "Verificar se cliente realmente assinou",
                         details: "Confirmar por qualquer meio (email, físico, digital) que o cliente assinou"
                     },
                     {
-                        title: "🚨 IMEDIATAMENTE: Marcar como 'assinado' no ERP",
+                        title: "🚨 NO MESMO DIA: Marcar como 'assinado' no ERP",
                         description: "Esta é a ação mais importante!",
                         details: "Não adie! Faça imediatamente após confirmação da assinatura"
                     },
                     {
-                        title: "Comunicar às partes interessadas",
+                        title: "Comunicar no ticket aberto",
                         description: "Informar sobre a baixa do aditivo",
                         details: "Informar gestor da filial (para possível bonificação) e time de faturamento"
                     }
