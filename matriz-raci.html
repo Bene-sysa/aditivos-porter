@@ -391,6 +391,7 @@
                     <option value="solicitante">Filial</option>
                     <option value="projetos">Projetos</option>
                     <option value="gerente">Gestores</option>
+                    <option value="solicitante">Gerente CS</option>
                     <option value="juridico">Jurídico</option>
                     <option value="faturamento">Faturamento (Matriz)</option>
                 </select>
@@ -441,7 +442,6 @@
                         <th>Jurídico</th>
                         <th>Gerente CS</th>
                         <th>Gestores</th>
-                        <th></th>
                         <th>Faturamento (Matriz)</th>
                     </tr>
                 </thead>
@@ -453,35 +453,40 @@
                         <td><span class="raci-badge I" onclick="showTooltip(event, 'Precisa ser informado sobre o orçamento criado')">I</span></td>
                         <td>-</td>
                         <td>-</td>
+                        <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="validacao-tecnica">
                         <td><strong>2. Validação Técnica do Orçamento</strong></td>
                         <td><span class="raci-badge C" onclick="showTooltip(event, 'Pode ser consultado para esclarecimentos')">C</span></td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Responsável por validar tecnicamente o escopo')">R</span></td>
                         <td>-</td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Deve ser informado caso validação seja aprovada.')">I</span></td>
                         <td>-</td>
                         <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="validacao-comercial">
                         <td><strong>3. Fechamento do Orçamento</strong></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre aprovação ou rejeição')">I</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre fechamento do orçamento, via ticket')">I</span></td>
+                        <td>-</td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Deve ser informado caso validação seja aprovada.')">I</span></td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Valida se orçamento corresponde ao negociado')">R</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado para preparar contrato')">I</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Pode ser informado caso esteja em cópia do ticket.')">I</span></td>
                         <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="contrato">
-                        <td><strong>4. Elaboração do Contrato Aditivo</strong></td>
+                        <td><strong>4. Elaboração e Envio do Contrato Aditivo</strong></td>
                         <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre elaboração do contrato')">I</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre o progresso')">I</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre elaboração')">I</span></td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Elabora o contrato aditivo')">R</span></td>
+                        <td>-</td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Responsável pela Elaboração e Envio')">R</span></td>
+                        <td>-</td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Recebe Contrato em cópia')">I</span></td>
                         <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="baixa-aditivo">
                         <td><strong>5. Baixa do Aditivo como "Assinado"</strong></td>
                         <td>-</td>
                         <td>-</td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre a baixa para preparar bonificações se necessário')">I</span></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Informado sobre a baixa para preparar bonificações se necessário')">I</span></td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'CRÍTICO: Marca como assinado imediatamente após confirmação')">R</span></td>
                         <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado para processar no faturamento')">I</span></td>
                     </tr>
