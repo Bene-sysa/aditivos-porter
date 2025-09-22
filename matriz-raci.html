@@ -452,7 +452,7 @@
                         <td><span class="raci-badge C" onclick="showTooltip(event, 'Precisa ser consultado sobre viabilidade técnica')">C</span></td>
                         <td><span class="raci-badge I" onclick="showTooltip(event, 'Precisa ser informado sobre o orçamento criado')">I</span></td>
                         <td>-</td>
-                        <td>-</td>
+                        <td><span class="raci-badge A" onclick="showTooltip(event, 'Aprova negociações previamente, durante negociação.')">A</span></td>
                         <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="validacao-tecnica">
@@ -484,33 +484,39 @@
                     </tr>
                     <tr class="activity-row" data-activity="baixa-aditivo">
                         <td><strong>5. Baixa do Aditivo como "Assinado"</strong></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Informado sobre a baixa, está em cópia')">I</span></td>
                         <td>-</td>
-                        <td>-</td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Informado sobre a baixa para preparar bonificações se necessário')">I</span></td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'CRÍTICO: Marca como assinado imediatamente após confirmação')">R</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado para processar no faturamento')">I</span></td>
+                        <td>-</td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Recebe notificação via e-mail.')">I</span></td>
+                        <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="bonificacoes">
                         <td><strong>6. Lançamento de Bonificações (até dia 10)</strong></td>
                         <td>-</td>
                         <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'PRAZO CRÍTICO: Lança bonificações até dia 10')">R</span></td>
-                        <td><span class="raci-badge C" onclick="showTooltip(event, 'Consultado sobre necessidade de bonificação')">C</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre bonificações lançadas')">I</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Consulta todo dia 10 a Lista de Faturamento e Bonificações')">I</span></td>
                     </tr>
                     <tr class="activity-row" data-activity="reajustes">
                         <td><strong>7. Aplicação de Reajustes Contratuais</strong></td>
                         <td>-</td>
                         <td>-</td>
-                        <td><span class="raci-badge C" onclick="showTooltip(event, 'Consultado sobre percentuais aplicados')">C</span></td>
-                        <td><span class="raci-badge C" onclick="showTooltip(event, 'Consultado sobre base legal')">C</span></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa reajustes nos dias 12-13')">R</span></td>
                     </tr>
                     <tr class="activity-row" data-activity="relatorios">
                         <td><strong>8. Geração de Relatórios para Conferência</strong></td>
                         <td>-</td>
                         <td>-</td>
-                        <td><span class="raci-badge C" onclick="showTooltip(event, 'Consulta relatórios para conferir dados')">C</span></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><span class="raci-badge A" onclick="showTooltip(event, 'Deve Aprovar os relatórios para conferir dados')">A</span></td>
                         <td>-</td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Gera e distribui relatórios no dia 13')">R</span></td>
                     </tr>
@@ -518,8 +524,9 @@
                         <td><strong>9. Execução Final do Faturamento (a partir do dia 15)</strong></td>
                         <td>-</td>
                         <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
                         <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre conclusão do faturamento')">I</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre o faturamento')">I</span></td>
                         <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa faturamento com base nos dados confiáveis do ERP')">R</span></td>
                     </tr>
                 </tbody>
@@ -535,7 +542,7 @@
                         <h4>Solicitante cria orçamento no SERVICE</h4>
                         <p>Usando modelos padrão, contemplando equipamentos e serviços</p>
                         <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Solicitante - Responsável</span>
+                            <span class="responsibility-tag R">Filial - Responsável</span>
                             <span class="responsibility-tag C">Projetos - Consultado</span>
                             <span class="responsibility-tag I">Gerente - Informado</span>
                         </div>
