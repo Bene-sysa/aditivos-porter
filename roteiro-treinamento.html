@@ -394,7 +394,7 @@
                     <div class="timeline-icon">4</div>
                     <div class="timeline-content">
                         <h4>Gerente valida Fechamento do Orçamento</h4>
-                        <p>Confirma se está de acordo com a negociação descrita no ticket, pela filial.</p>
+                        <p>Confirma se está de acordo com a negociação descrita no ticket, pela filial. Preenche valores de mensalidade que devem entrar em vigor quando o aditivo for assinado</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -737,7 +737,7 @@
         }
 
         function nextDemoStep(demoNumber) {
-            const currentStep = document.querySelector(`#demo${demoNumber}-step1.active, #demo${demoNumber}-step2.active, #demo${demoNumber}-step3.active`);
+            const currentStep = document.querySelector(`#demo${demoNumber}-step1.active, #demo${demoNumber}-step2.active, #demo${demoNumber}-step3.active, #demo${demoNumber}-step4.active, #demo${demoNumber}-step5.active`);
             if (!currentStep) return;
             
             currentStep.classList.remove('active');
