@@ -431,7 +431,7 @@
                     <p><strong>Resultado:</strong> Jurídico envia contrato para assinatura. Quando assinado, baixa no ERP. </p>
                     <button class="btn" onclick="nextDemoStep(1)">Próximo passo →</button>
                 </div>
-                <div class="demo-step" id="demo1-step3">
+                <div class="demo-step" id="demo1-step5">
                     <p><strong>Resultado:</strong> Em caso de bonificação do valor de Porter Entregas, Gestor lança bonificação pelo período estipulado. </p>
                     <button class="btn" onclick="resetDemo(1)">Começar de novo?</button>
                 </div>
@@ -443,8 +443,8 @@
             <h2><span class="slide-icon">💰</span> Pilar 2: Bonificações</h2>
             
             <div class="highlight-box">
-                <h3>⏰ Prazo Crítico: Até o dia 10 de cada mês</h3>
-                <p>Gestores devem lançar bonificações para descontos e carências negociadas</p>
+                <h3>⏰ Prazo para Lançar Bonificações: Até o dia 10 de cada mês</h3>
+                <p>Gestores devem lançar bonificações para descontos e carências negociadas nos aditivos.</p>
             </div>
 
             <div class="content-grid">
@@ -460,28 +460,28 @@
                 <div class="content-section">
                     <h4>🔧 Como operacionalizar?</h4>
                     <ul>
-                        <li>Jurídico baixa aditivo como "assinado"</li>
-                        <li>Gestor identifica necessidade de bonificação</li>
+                        <li>Jurídico baixa aditivo como "assinado" → Mensalidade do Cliente muda </li>
+                        <li>Gestor Bonifica valores que devem ser abonados por determinado período</li>
                         <li>Lança no sistema SERVICE</li>
-                        <li>Define período de vigência</li>
+                        <li>Faturamento ocorre sem percausos para o cliente e para a empresa.</li>
                     </ul>
                 </div>
             </div>
 
             <div class="interactive-demo">
-                <h3>🎮 Exemplo Prático: Distribuição de Bonificação</h3>
+                <h3>🎮 Exemplo Prático de Bonificação</h3>
                 <div class="demo-step active" id="demo2-step1">
-                    <p><strong>Cenário:</strong> Aditivo de R$ 269,00 com 6 meses de carência</p>
-                    <button class="btn" onclick="nextDemoStep(2)">Como bonificar? →</button>
+                    <p><strong>Cenário:</strong> Aditivo de Porter Entregas. R$273,00 com 6 meses de carência</p>
+                    <button class="btn" onclick="nextDemoStep(2)">Como Funciona?</button>
                 </div>
                 <div class="demo-step" id="demo2-step2">
-                    <p><strong>Solução:</strong> Criar bonificação de R$ 269,00 por 6 meses</p>
-                    <p>Sistema distribui automaticamente: R$ 269,00 x 6 = R$ 1.614,00 total</p>
+                    <p><strong>Solução:</strong> Bonificação de R$273,00  →  Período: 6 meses  →  Motivo: Negociação Comercial</p>
+                    <p>Sistema distribui automaticamente R$273,00 durante o período estipulado, a partir da data definida na bonificação.</p>
                     <button class="btn" onclick="nextDemoStep(2)">Ver monitoramento →</button>
                 </div>
                 <div class="demo-step" id="demo2-step3">
                     <p><strong>Acompanhamento:</strong> Relatórios > C - Monitoramento/Operacional > 9 - Bonificações</p>
-                    <button class="btn" onclick="resetDemo(2)">Reiniciar demo</button>
+                    <button class="btn" onclick="resetDemo(2)">Voltar ao início!</button>
                 </div>
             </div>
 
