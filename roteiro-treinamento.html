@@ -372,22 +372,22 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4>Solicitante cria orçamento no SERVICE</h4>
-                        <p>Usando modelos padrão, contemplando equipamentos e serviços</p>
+                        <h4>Filial cria orçamento no SERVICE</h4>
+                        <p>Usando modelos padrão, contemplando produtos + equipamentos porter + serviços avulsos</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-icon">2</div>
                     <div class="timeline-content">
-                        <h4>Preenche formulário de solicitação</h4>
-                        <p>Anexa o número do orçamento gerado</p>
+                        <h4>Filial Preenche formulário de solicitação</h4>
+                        <p>Todas as informações devem ser preenchidas conforme orientação do formulário.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-icon">3</div>
                     <div class="timeline-content">
-                        <h4>Time de Projetos valida tecnicamente</h4>
-                        <p>Verifica equipamentos Porter e licenças</p>
+                        <h4>Equipe de Projetos valida escopo tecnicamente</h4>
+                        <p>Organiza quadro de equipamentos Porter e Licenças do cliente, conforme descrição da filial no ticket.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -401,14 +401,14 @@
                     <div class="timeline-icon">5</div>
                     <div class="timeline-content">
                         <h4>Jurídico elabora contrato</h4>
-                        <p>E marca como "assinado" assim que confirmado</p>
+                        <p>Com as informações dos times anteriores, fica encarregado de elaborar a minuta e enviar para assinatura.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-icon">6</div>
                     <div class="timeline-content">
-                        <h4>Gestor da unidade lança Bonificações</h4>
-                        <p>Gestor lança bonificações de acordo com as negociações feitas.</p>
+                        <h4>Gestor da Filial Lança Bonificações</h4>
+                        <p>Ao assinar o aditivo, a mensalidade do cliente é ajustada. O Gestor deve lançar as bonificações de acordo com as negociações feitas.</p>
                     </div>
                 </div>
             </div>
@@ -416,16 +416,24 @@
             <div class="interactive-demo">
                 <h3>🎮 Demonstração Interativa</h3>
                 <div class="demo-step active" id="demo1-step1">
-                    <p><strong>Cenário:</strong>EDIFÍCIO TESTE solicita de um aditivo de R$ 269,00</p>
+                    <p><strong>Cenário:</strong>EDIFÍCIO TESTE solicita um aditivo de Porter Entregas (R$ 273,00)</p>
                     <button class="btn" onclick="nextDemoStep(1)">Como proceder?!  →  </button>
                 </div>
                 <div class="demo-step" id="demo1-step2">
-                    <p><strong>Ação:</strong> Solicitante acessa ERP  → Cria orçamento  →  Preenche Formulário de Solicitação</p>
+                    <p><strong>Ação:</strong> Filial acessa ERP  → Cria orçamento  →  Preenche Formulário de Solicitação</p>
                     <button class="btn" onclick="nextDemoStep(1)">Próximo passo →</button>
                 </div>
                 <div class="demo-step" id="demo1-step3">
-                    <p><strong>Resultado:</strong> Ticket entra na esteira de trabalho do Backoffice da Matriz </p>
-                    <button class="btn" onclick="resetDemo(1)">Reiniciar demo</button>
+                    <p><strong>Resultado:</strong> Time de Projetos e CS validam solicitação </p>
+                    <button class="btn" onclick="nextDemoStep(1)">Próximo passo →</button>
+                </div>
+                <div class="demo-step" id="demo1-step4">
+                    <p><strong>Resultado:</strong> Jurídico envia contrato para assinatura. Quando assinado, baixa no ERP. </p>
+                    <button class="btn" onclick="nextDemoStep(1)">Próximo passo →</button>
+                </div>
+                <div class="demo-step" id="demo1-step3">
+                    <p><strong>Resultado:</strong> Em caso de bonificação do valor de Porter Entregas, Gestor lança bonificação pelo período estipulado. </p>
+                    <button class="btn" onclick="resetDemo(1)">Começar de novo?</button>
                 </div>
             </div>
         </div>
