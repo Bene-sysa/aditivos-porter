@@ -368,7 +368,7 @@
 
             <div class="nav-section">
                 <div class="nav-title">Guias Práticos</div>
-                <a href="#service-guide" class="nav-item" onclick="showSection('service-guide')">Sistema SERVICE</a>
+                <a href="#service-guide" class="nav-item" onclick="showSection('service-guide')">Sistema ERP</a>
                 <a href="#bonificacao-guide" class="nav-item" onclick="showSection('bonificacao-guide')">Lançar Bonificações</a>
                 <a href="#relatorios" class="nav-item" onclick="showSection('relatorios')">Relatórios</a>
             </div>
@@ -408,7 +408,7 @@
                         <div class="step-number">2</div>
                         <h3>Processo de Aditivos</h3>
                         <p><strong>Antes:</strong> Projetista montava os orçamentos</p>
-                        <p><strong>Agora:</strong> Filial cria orçamento no SERVICE antes de solicitar</p>
+                        <p><strong>Agora:</strong> Filial cria orçamento no ERP antes de solicitar</p>
                     </div>
 
                     <div class="step">
@@ -525,7 +525,7 @@
                     <div class="step">
                         <div class="step-number">1</div>
                         <h3>Filial - Criar Orçamento</h3>
-                        <p><strong>Local:</strong> Sistema SERVICE → Operacional/Vendas → B - Orçamentos → A - Orçamentos (Cadastro/Alteração)</p>
+                        <p><strong>Local:</strong> Sistema ERP → Operacional/Vendas → B - Orçamentos → A - Orçamentos (Cadastro/Alteração)</p>
                         <ul>
                             <li>Definir tipo do orçamento: "Orçamento CS"</li>
                             <li>Definir modalidade como "Locação"</li>
@@ -543,7 +543,7 @@
                         <p>Responder todas as perguntas do <strong>Formulário de Solicitação de Aditivo</strong></p>
                         <ul>
                             <li>Dados essenciais da proposta</li>
-                            <li>Número do orçamento gerado no SERVICE</li>
+                            <li>Número do orçamento gerado no ERP</li>
                             <li>Anexos solicitados (Atas, Anexo 3, etc..)</li>
                         </ul>
                         <div class="code-block">
@@ -590,10 +590,10 @@
                     </div>
 					<div class="step">
                         <div class="step-number">6</div>
-                        <h3>Gestor - Lançar Bonificação</h3>
+                        <h3>Lançamento da Bonificação (Pós-assinatura)</h3>
                         <ul>
-                            <li>Lançar Bonificações com base nas negociações feitas</li>
-                            <li><strong>CRÍTICO: O não lançamento das bonificações</strong> pode implicar em atritos com cliente.</li>
+                            <li><strong>Responsabilidade do Financeiro (Matriz): </strong> Lançar bonificações de período integral do contrato, que são fixas e decorrentes do aditivo de redução.</li>
+                            <li><strong>Responsabilidade do Gestor (Filial):</strong> Lançar bonificações de período específico e temporário, como atrasos de obra, carência na cobrança ou abonos por negociação pontual.</li>
                         </ul>
                         
                         <div class="critical-box">
@@ -612,79 +612,53 @@
 
                 <div class="critical-box">
                     <h3>⏰ PRAZO</h3>
-                    <p><strong>Gestores devem lançar bonificações até o dia 10 de cada mês!</strong></p>
-                    <p>Bonificações não lançadas no prazo podem causar retrabalho no faturamento.</p>
+                    <p><strong>Bonificações devem ser lançada até o dia 10 do mês!</strong></p>
+                    <p>Bonificações que não forem lançadas no prazo podem causar retrabalho no faturamento.</p>
                 </div>
 
-                <div class="step-by-step">
-                    <h2>🎯 Quando Usar Bonificações</h2>
-                    <div class="step">
-                        <div class="step-number">🎁</div>
-                        <h3>Situações que Requerem Bonificação</h3>
-                        <ul>
-                            <li><strong>Aditivos de retenção</strong> com períodos de carência na cobrança</li>
-                            <li><strong>Descontos negociados</strong> em valores mensais</li>
-                            <li><strong>Valores que não devem impactar</strong> imediatamente na mensalidade</li>
-                        </ul>
-                    </div>
-                </div>
+                 <div class="step-by-step">
+        <h2>👥 Quem é o Responsável pelo Lançamento?</h2>
+        <p>A responsabilidade pelo lançamento da bonificação é dividida com base na sua natureza, para otimizar o processo:</p>
+        
+        <div class="step">
+            <div class="step-number">🏢</div>
+            <h3>Financeiro (Matriz)</h3>
+            <p>O time Financeiro é responsável por lançar bonificações que se aplicam por todo o período do contrato, geralmente ligadas a um aditivo de redução de valor.</p>
+            <ul>
+                <li><strong>Tipo:</strong> Bonificação de período integral do contrato.</li>
+                <li><strong>Exemplo:</strong> Um aditivo que define um desconto fixo de R$ 500,00 na mensalidade pelos próximos 60 meses.</li>
+            </ul>
+        </div>
 
-                <div class="step-by-step">
-                    <h2>📋 Como Lançar Bonificações</h2>
-                    
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Identificar Necessidade</h3>
-                        <p>Monitorar seu ticket de aditivo para saber sempre que um aditivo é assinado. Se atentar a:</p>
-                        <ul>
-                            <li>Período de carência negociado.</li>
-                            <li>Desconto temporário acordado.</li>
-                            <li>Acordo de Vigência.</li>
-                        </ul>
-                    </div>
+        <div class="step">
+            <div class="step-number">📍</div>
+            <h3>Gestor (Filial)</h3>
+            <p>O Gestor da filial é responsável por lançar bonificações de período específico e temporário, que não se estendem por todo o contrato.</p>
+            <ul>
+                <li><strong>Tipo:</strong> Bonificação de período específico.</li>
+                <li><strong>Exemplos:</strong> Atraso no início de uma obra, período de carência para um novo serviço, ou abonos por negociação comercial pontual.</li>
+            </ul>
+        </div>
+    </div>
 
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Acessar Sistema ERP</h3>
-                        <p><strong>Caminho:</strong> Monitoramento > C - Despesas/Bonificações > Bonificações de Clientes</p>
-                        <div class="code-block">
-                            Menu: Monitoramento > C - Despesas/Bonificações > Bonificações de Clientes
-                            Tela: Lançamentos de Bonificações a Clientes
-                        </div>
-                    </div>
+    <div class="warning-box">
+        <h3>Etapa Seguinte: Liberação pelo Departamento de Receitas</h3>
+        <p>Importante: Após o lançamento (seja pelo Financeiro ou pelo Gestor), toda bonificação precisa ser aprovada pelo Departamento de Receitas para se tornar válida. Essa etapa de governança garante um controle adicional no processo.</p>
+    </div>
 
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>Configurar Bonificação</h3>
-                        <ul>
-                            <li><strong>Valor:</strong> Inserir valor mensal a ser bonificado</li>
-                            <li><strong>Período:</strong> Definir quantidade de meses</li>
-                            <li><strong>Motivo:</strong> Selecionar o Tipo: Negociação Comercial. Descrever o motivo da bonificação</li>
-                        </ul>
-                        
-                        <div class="info-box">
-                            <h4>💡 Exemplo Prático</h4>
-                            <p><strong>Situação:</strong> Aditivo de R$ 269,00 com 6 meses de carência na Licença de Porter Entregas</p>
-                            <p><strong>Ação:</strong> Acessar Matriz e lançar Bonificação de R$269,00 durante 6 meses.</p>
-                            <p><strong>Motivo:</strong> Negociação Comercial.</p>
-                            <p><strong>Resultado:</strong> R$ 269,00 distribuídos mensalmente, durante 6 meses. O motivo descrito aparecerá nos seus relatórios de faturamento.</p>
-                        </div>
-                    </div>
-
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h3>Acompanhar e Monitorar</h3>
-                        <p><strong>Relatório:</strong> Relatórios > C - Monitoramento/Operacional > 9 - Bonificações de Clientes</p>
-                        <p>O relatório mostra:</p>
-                        <ul>
-                            <li>Descrição da bonificação</li>
-                            <li>Datas de geração e liberação</li>
-                            <li>Valores e status de faturamento</li>
-                            <li>Detalhes da transação</li>
-                            <li>Usuário responsável</li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="step-by-step">
+        <h2>🎯 Quando Usar Bonificações</h2>
+        <div class="step">
+            <div class="step-number">🎁</div>
+            <h3>Situações que Requerem Bonificação</h3>
+            <ul>
+                <li><strong>Aditivos de retenção</strong> com períodos de carência na cobrança.</li>
+                <li><strong>Descontos negociados</strong> que não alteram o valor-base do contrato.</li>
+                <li><strong>Valores que não devem impactar</strong> imediatamente na mensalidade (ex: cobrança futura).</li>
+                <li><strong>Redução de valor</strong> para manter um cliente, onde o preço-cheio precisa continuar registrado.</li>
+            </ul>
+        </div>
+    </div>
             </section>
 
             <!-- Seção FAQ -->
@@ -884,8 +858,8 @@
             <!-- Seção SERVICE Guide -->
             <section class="content-section" id="service-guide">
                 <div class="section-header">
-                    <h1>🖥️ Guia do Sistema SERVICE</h1>
-                    <p class="breadcrumb">Guias Práticos > Sistema SERVICE</p>
+                    <h1>🖥️ Guia do Sistema ERP</h1>
+                    <p class="breadcrumb">Guias Práticos > Sistema ERP</p>
                 </div>
 
                 <div class="step-by-step">
@@ -992,8 +966,8 @@
 
                     <div class="step">
                         <div class="step-number">🖥️</div>
-                        <h3>Acessar Sistema SERVICE</h3>
-                        <p><strong>Caminho:</strong> Sistema SERVICE → Tela de "Lançamentos de Bonificações"</p>
+                        <h3>Acessar Sistema ERP</h3>
+                        <p><strong>Caminho:</strong> Sistema ERP → Tela de "Lançamentos de Bonificações"</p>
                         <div class="code-block">
                             Navegação: [Menu Principal] → [Lançamentos de Bonificações]
                         </div>
