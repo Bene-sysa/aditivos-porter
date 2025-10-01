@@ -94,6 +94,10 @@
             gap: 2rem;
             margin-bottom: 2rem;
         }
+        
+        .content-grid.three-cols {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
 
         .content-section {
             padding: 1.5rem;
@@ -257,6 +261,14 @@
             padding: 1.5rem;
             margin: 1.5rem 0;
         }
+        
+        .governance-box {
+            background: linear-gradient(135deg, #f0e6ff, #e3d1ff);
+            border: 2px solid #8E2DE2;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
 
         .process-flow {
             display: flex;
@@ -299,7 +311,7 @@
         }
 
         @media (max-width: 768px) {
-            .content-grid {
+            .content-grid, .content-grid.three-cols {
                 grid-template-columns: 1fr;
             }
             
@@ -323,7 +335,6 @@
             </div>
         </div>
 
-        <!-- Slide 1: Introdução -->
         <div class="slide active" data-slide="1">
             <h2><span class="slide-icon">🚀</span> Bem-vindos ao Novo Processo!</h2>
             
@@ -348,10 +359,10 @@
                     <ul>
                         <li>ERP como fonte única</li>
                         <li>Dados confiáveis e histórico</li>
-                        <li>Maior agilidade</li>
+                        <li>Maior agilidade e governança</li>
                         <li>Redução de erros</li>
                         <li>Processo padronizado</li>
-                        <li>Registros dentro do ERP</li>
+                        <li>Registros auditáveis no ERP</li>
                     </ul>
                 </div>
             </div>
@@ -365,50 +376,57 @@
             </div>
         </div>
 
-        <!-- Slide 2: Pilar 1 - Aditivos -->
         <div class="slide" data-slide="2">
-            <h2><span class="slide-icon">📄</span> Aditivos</h2>
+            <h2><span class="slide-icon">📄</span> Fluxo de Aditivos</h2>
             
             <div class="timeline">
                 <div class="timeline-item">
+                    <div class="timeline-icon">1</div>
                     <div class="timeline-content">
-                        <h4>Filial cria orçamento no SERVICE</h4>
-                        <p>Usando modelos padrão, contemplando produtos + equipamentos porter + serviços avulsos</p>
+                        <h4>Filial cria orçamento no ERP</h4>
+                        <p>Usando modelos padrão, contemplando produtos, equipamentos Porter e serviços avulsos.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-icon">2</div>
                     <div class="timeline-content">
                         <h4>Filial Preenche formulário de solicitação</h4>
-                        <p>Todas as informações devem ser preenchidas conforme orientação do formulário.</p>
+                        <p>Todas as informações da negociação devem ser detalhadas no formulário oficial.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-icon">3</div>
                     <div class="timeline-content">
                         <h4>Equipe de Projetos valida escopo tecnicamente</h4>
-                        <p>Organiza quadro de equipamentos Porter e Licenças do cliente, conforme descrição da filial no ticket.</p>
+                        <p>Organiza o quadro de equipamentos Porter e licenças, validando a viabilidade técnica.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-icon">4</div>
                     <div class="timeline-content">
-                        <h4>Gerente valida Fechamento do Orçamento</h4>
-                        <p>Confirma se está de acordo com a negociação descrita no ticket, pela filial. Preenche valores de mensalidade que devem entrar em vigor quando o aditivo for assinado</p>
+                        <h4>Gerente CS valida Fechamento do Orçamento</h4>
+                        <p>Confirma se está de acordo com a negociação e preenche os valores de mensalidade que devem vigorar após assinatura.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-icon">5</div>
                     <div class="timeline-content">
-                        <h4>Jurídico elabora contrato</h4>
-                        <p>Com as informações dos times anteriores, fica encarregado de elaborar a minuta e enviar para assinatura.</p>
+                        <h4>Jurídico elabora e baixa o contrato</h4>
+                        <p>Elabora a minuta e, após assinatura, baixa o aditivo no ERP. <strong>Essa ação altera a mensalidade do cliente!</strong></p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-icon">6</div>
                     <div class="timeline-content">
-                        <h4>Gestor da Filial Lança Bonificações</h4>
-                        <p>Quando o aditivo for totalmente assinado, a mensalidade do cliente é ajustada com os novos valores. O Gestor deve lançar as bonificações de acordo com as negociações feitas.</p>
+                        <h4>Lançamento das Bonificações (Financeiro ou Gestor)</h4>
+                        <p>Com a mensalidade ajustada, o time responsável lança a bonificação para aplicar descontos ou carências.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">7</div>
+                    <div class="timeline-content">
+                        <h4>Governança aprova a Bonificação</h4>
+                        <p>A equipe de Receitas faz a validação final para que a bonificação tenha efeito no faturamento.</p>
                     </div>
                 </div>
             </div>
@@ -416,201 +434,154 @@
             <div class="interactive-demo">
                 <h3>🎮 Demonstração Interativa</h3>
                 <div class="demo-step active" id="demo1-step1">
-                    <p><strong>Cenário:</strong>EDIFÍCIO TESTE solicita um aditivo de Porter Entregas (R$ 273,00)</p>
-                    <button class="btn" onclick="nextDemoStep(1)">Como proceder?!  →  </button>
+                    <p><strong>Cenário:</strong> EDIFÍCIO TESTE solicita um aditivo de Porter Entregas (R$ 273,00) com carência.</p>
+                    <button class="btn" onclick="nextDemoStep(1)">Como proceder? →</button>
                 </div>
                 <div class="demo-step" id="demo1-step2">
-                    <p><strong>Ação:</strong> Filial acessa ERP  → Cria orçamento  →  Preenche Formulário de Solicitação</p>
+                    <p><strong>Ação:</strong> Filial acessa ERP → Cria orçamento → Preenche Formulário de Solicitação.</p>
                     <button class="btn" onclick="nextDemoStep(1)">Próximo passo →</button>
                 </div>
                 <div class="demo-step" id="demo1-step3">
-                    <p><strong>Resultado:</strong> Time de Projetos e CS validam solicitação </p>
+                    <p><strong>Validação:</strong> Time de Projetos e Gerente CS validam a solicitação e o orçamento.</p>
                     <button class="btn" onclick="nextDemoStep(1)">Próximo passo →</button>
                 </div>
                 <div class="demo-step" id="demo1-step4">
-                    <p><strong>Resultado:</strong> Jurídico envia contrato para assinatura. Quando assinado, baixa no ERP. </p>
+                    <p><strong>Contrato:</strong> Jurídico envia para assinatura e, ao receber, baixa no ERP (o valor de R$ 273,00 é adicionado à mensalidade).</p>
                     <button class="btn" onclick="nextDemoStep(1)">Próximo passo →</button>
                 </div>
                 <div class="demo-step" id="demo1-step5">
-                    <p><strong>Resultado:</strong> Em caso de bonificação do valor de Porter Entregas, gestor lança bonificação pelo período estipulado. </p>
+                    <p><strong>Bonificação:</strong> O time responsável (Gestor ou Financeiro) lança a bonificação de R$ 273,00 pelo período negociado para zerar a cobrança durante a carência.</p>
+                     <button class="btn" onclick="nextDemoStep(1)">Último passo →</button>
+                </div>
+                <div class="demo-step" id="demo1-step6">
+                    <p><strong>Aprovação:</strong> Governança aprova o lançamento, garantindo que o cliente não será cobrado indevidamente.</p>
                     <button class="btn" onclick="resetDemo(1)">Começar de novo?</button>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 3: Pilar 2 - Bonificações -->
         <div class="slide" data-slide="3">
-            <h2><span class="slide-icon">💰</span> Bonificações </h2>
+            <h2><span class="slide-icon">💰</span> Bonificações: Quem e Quando</h2>
             
             <div class="highlight-box">
-                <h3>⏰ Prazo para Lançar Bonificações: Até o dia 10 de cada mês</h3>
-                <p>Gestores devem lançar bonificações para descontos e carências negociadas nos aditivos.</p>
+                <h3>⏰ Prazo para Lançar Bonificações Temporárias: Até o dia 10 de cada mês</h3>
+                <p>O Gestor da Filial deve lançar bonificações de curto prazo, como carências por atraso de obra ou abonos comerciais.</p>
             </div>
 
             <div class="content-grid">
                 <div class="content-section">
-                    <h4>📋 Quando usar bonificações?</h4>
+                    <h4>📍 Gestor da Filial</h4>
+                    <p><strong>Responsabilidade:</strong> Bonificações <strong>temporárias</strong> e de <strong>curto prazo</strong>.</p>
                     <ul>
-                        <li>Aditivos de retenção</li>
+                        <li>Atraso de obra</li>
                         <li>Períodos de carência</li>
-                        <li>Descontos negociados</li>
-                        <li>Valores que não devem impactar imediatamente</li>
+                        <li>Abonos comerciais pontuais</li>
                     </ul>
                 </div>
                 <div class="content-section">
-                    <h4>🔧 Como operacionalizar?</h4>
+                    <h4>🏢 Financeiro (Matriz)</h4>
+                    <p><strong>Responsabilidade:</strong> Bonificações <strong>fixas</strong> e de <strong>longo prazo</strong>, vinculadas ao contrato.</p>
                     <ul>
-                        <li>Jurídico baixa aditivo como "assinado" → Mensalidade do Cliente muda </li>
-                        <li>Gestor Bonifica valores que devem ser abonados por determinado período</li>
-                        <li>Lança no sistema SERVICE</li>
-                        <li>Faturamento ocorre sem percausos para o cliente e para a empresa.</li>
+                        <li>Descontos contratuais</li>
+                        <li>Aditivos de retenção com redução fixa</li>
+                        <li>Ex: Porter Entregas bonificado por 36 meses</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="interactive-demo">
-                <h3>🎮 Exemplo Prático de Bonificação</h3>
-                <div class="demo-step active" id="demo2-step1">
-                    <p><strong>Cenário:</strong> Aditivo de Porter Entregas. R$273,00 com 6 meses de carência</p>
-                    <button class="btn" onclick="nextDemoStep(2)">Como Funciona?</button>
-                </div>
-                <div class="demo-step" id="demo2-step2">
-                    <p><strong>Solução:</strong> Bonificação de R$273,00  →  Período: 6 meses  →  Motivo: Negociação Comercial</p>
-                    <p>Sistema distribui automaticamente R$273,00 durante o período estipulado, a partir da data definida na bonificação.</p>
-                    <button class="btn" onclick="nextDemoStep(2)">Ver monitoramento →</button>
-                </div>
-                <div class="demo-step" id="demo2-step3">
-                    <p><strong>Acompanhamento:</strong> Relatórios > C - Monitoramento/Operacional > 9 - Bonificações</p>
-                    <button class="btn" onclick="resetDemo(2)">Voltar ao início!</button>
-                </div>
+            <div class="governance-box">
+                <h3>🛡️ Etapa Final: Aprovação da Governança</h3>
+                <p>Toda bonificação, seja do Gestor ou do Financeiro, <strong>precisa ser aprovada pela equipe de Receitas</strong>. Essa é a trava de segurança que garante a precisão do nosso faturamento.</p>
             </div>
 
             <div class="quiz-container">
                 <h3>🧠 Teste seu conhecimento</h3>
-                <div class="quiz-question">Até qual dia do mês o gestor deve lançar as bonificações?</div>
+                <div class="quiz-question">Um aditivo prevê um desconto fixo por 48 meses. Quem deve lançar essa bonificação?</div>
                 <div class="quiz-options">
-                    <div class="quiz-option" onclick="checkAnswer(this, false)">Até o dia 5</div>
-                    <div class="quiz-option" onclick="checkAnswer(this, true)">Até o dia 10</div>
-                    <div class="quiz-option" onclick="checkAnswer(this, false)">Até o dia 15</div>
-                    <div class="quiz-option" onclick="checkAnswer(this, false)">Não há prazo definido</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">O Gestor da Filial, até o dia 10</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">O Time Financeiro (Matriz)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">O Time Jurídico, ao baixar o contrato</div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 4: Novo Cronograma -->
         <div class="slide" data-slide="4">
-            <h2><span class="slide-icon">📅</span> Novo Cronograma Mensal</h2>
+            <h2><span class="slide-icon">👥</span> Matriz de Responsabilidades</h2>
             
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon">10</div>
-                    <div class="timeline-content">
-                        <h4>Até o dia 10</h4>
-                        <p><strong>Gestores:</strong> Lançam bonificações no sistema, sempre que necessário.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon">11</div>
-                    <div class="timeline-content">
-                        <h4>Dia 11</h4>
-                        <p><strong>Faturamento:</strong> Reajustes mensais, de clientes em aniversário de contrato. </p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon">12</div>
-                    <div class="timeline-content">
-                        <h4>Dia 12</h4>
-                        <p><strong>Faturamento:</strong> Gera relatório em lote e encaminha aos gestores, contemplando bonificações. </p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon">15</div>
-                    <div class="timeline-content">
-                        <h4>A partir do dia 15</h4>
-                        <p><strong>Faturamento:</strong> Transmite Notas e Boletos, para cobrança dos clientes.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="highlight-box">
-                <h3>🎯 Benefícios do Novo Cronograma</h3>
-                <ul>
-                    <li><strong>Confiabilidade:</strong> Dados sempre atualizados no ERP</li>
-                    <li><strong>Previsibilidade:</strong> Cronograma fixo e conhecido por todos</li>
-                    <li><strong>Segurança:</strong> Fim dos riscos de retenção bancária</li>
-                    <li><strong>Eficiência:</strong> Time pode focar em análises e melhorias</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Slide 5: Responsabilidades por Time -->
-        <div class="slide" data-slide="5">
-            <h2><span class="slide-icon">👥</span> Responsabilidades por Time</h2>
-            
-            <div class="content-grid">
+            <div class="content-grid three-cols">
                 <div class="content-section">
-                    <h4>🎯 Filial </h4>
+                    <h4>🎯 Filial</h4>
                     <ul>
-                        <li>Criar orçamento no SERVICE</li>
-                        <li>Preencher formulário de solicitação</li>
+                        <li>Criar orçamento no ERP</li>
+                        <li>Preencher formulário</li>
                         <li>Usar modelos padrão</li>
                     </ul>
                 </div>
                 <div class="content-section">
-                    <h4>🔧 Time de Projetos</h4>
+                    <h4>🔧 Projetos</h4>
                     <ul>
-                        <li>Validação técnica do escopo</li>
-                        <li>Verificar equipamentos Porter</li>
-                        <li>Aprovar ou solicitar correções</li>
+                        <li>Validação técnica</li>
+                        <li>Verificar equipamentos</li>
+                        <li>Aprovar/corrigir escopo</li>
                     </ul>
                 </div>
                 <div class="content-section">
-                    <h4>💼 Gerente CS </h4>
+                    <h4>💼 Gerente CS</h4>
                     <ul>
-                        <li>Validação do Escopo</li>
-                        <li>Preenchimento dos valores mensais</li>
-                        <li>Fechamento do Orçamento</li>
+                        <li>Validação comercial</li>
+                        <li>Preencher valores mensais</li>
+                        <li>Fechar orçamento</li>
                     </ul>
                 </div>
                 <div class="content-section">
-                    <h4>⚖️ Time Jurídico</h4>
+                    <h4>⚖️ Jurídico</h4>
                     <ul>
-                        <li>Elaborar contrato aditivo</li>
-                        <li>Baixar contratos como "assinado"</li>
+                        <li>Elaborar contrato</li>
+                        <li><strong>Baixar como "assinado"</strong></li>
                     </ul>
                 </div>
                 <div class="content-section">
-                    <h4>🏢 Gestor da Filial</h4>
+                    <h4>📍 Gestor da Filial</h4>
                     <ul>
-                        <li>Lançar bonificações até dia 10</li>
-                        <li>Garantir reflexo do escopo negociado</li>
-                        <li>Monitorar relatórios</li>
+                        <li>Lançar bonificações <strong>temporárias</strong></li>
+                        <li>Prazo: dia 10</li>
+                    </ul>
+                </div>
+                 <div class="content-section">
+                    <h4>🏢 Financeiro</h4>
+                    <ul>
+                        <li>Lançar bonificações <strong>de contrato</strong></li>
+                    </ul>
+                </div>
+                 <div class="content-section">
+                    <h4>🛡️ Governança</h4>
+                    <ul>
+                        <li><strong>Aprovar TODAS as bonificações</strong></li>
                     </ul>
                 </div>
                 <div class="content-section">
-                    <h4>📊 Time de Faturamento</h4>
+                    <h4>📊 Faturamento</h4>
                     <ul>
-                        <li>Gerar Lote de Faturamento</li>
-                        <li>Validar Listagem</li>
-                        <li>Executar Faturamento</li>
+                        <li>Gerar Lote</li>
+                        <li>Validar listagem</li>
+                        <li>Executar faturamento</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 6: Exercício Prático -->
-        <div class="slide" data-slide="6">
+        <div class="slide" data-slide="5">
             <h2><span class="slide-icon">🎯</span> Exercício Prático</h2>
             
             <div class="interactive-demo">
                 <h3>🏢 Caso: Condomínio Vila Real</h3>
                 <div class="demo-step active" id="demo3-step1">
-                    <p><strong>Situação:</strong> Cliente quer adicionar 5 câmeras (R$ 150,00/mês cada) com 3 meses de carência</p>
-                    <p><strong>Pergunta:</strong> Qual o primeiro passo?</p>
+                    <p><strong>Situação:</strong> Cliente quer adicionar 5 câmeras (R$ 150,00/mês no total) com 3 meses de carência por atraso na instalação.</p>
+                    <p><strong>Pergunta:</strong> Quem deve lançar a bonificação e qual o valor?</p>
                     <div style="margin-top: 1rem;">
-                        <button class="btn" onclick="showStep3Answer(1)" style="margin-right: 1rem;">Criar orçamento no SERVICE</button>
-                        <button class="btn" onclick="showStep3Answer(2)" style="margin-right: 1rem;">Ligar para o Jurídico</button>
-                        <button class="btn" onclick="showStep3Answer(3)">Enviar email para Projetos</button>
+                        <button class="btn" onclick="showStep3Answer(1)" style="margin-right: 1rem;">Financeiro: R$ 450 por 1 mês</button>
+                        <button class="btn" onclick="showStep3Answer(2)" style="margin-right: 1rem;">Gestor: R$ 150 por 3 meses</button>
+                        <button class="btn" onclick="showStep3Answer(3)">Jurídico: Não lança, apenas informa</button>
                     </div>
                 </div>
                 <div class="demo-step" id="demo3-step2">
@@ -618,10 +589,10 @@
                     <button class="btn" onclick="nextDemoStep(3)">Continuar →</button>
                 </div>
                 <div class="demo-step" id="demo3-step3">
-                    <p><strong>Agora:</strong> Orçamento criado. O que o gestor deve fazer após a assinatura?</p>
+                    <p><strong>Agora:</strong> O que acontece após o lançamento da bonificação pelo Gestor?</p>
                     <div style="margin-top: 1rem;">
-                        <button class="btn" onclick="showBonusAnswer(1)" style="margin-right: 1rem;">Nada, valor será cobrado automaticamente</button>
-                        <button class="btn" onclick="showBonusAnswer(2)">Lançar bonificação de R$ 750 por 3 meses</button>
+                        <button class="btn" onclick="showBonusAnswer(1)" style="margin-right: 1rem;">O valor já é descontado no faturamento</button>
+                        <button class="btn" onclick="showBonusAnswer(2)">A Governança precisa aprovar o lançamento</button>
                     </div>
                 </div>
                 <div class="demo-step" id="demo3-step4">
@@ -631,24 +602,22 @@
             </div>
         </div>
 
-        <!-- Slide 7: Conclusão -->
-        <div class="slide" data-slide="7">
+        <div class="slide" data-slide="6">
             <h2><span class="slide-icon">🏆</span> Conclusão e Próximos Passos</h2>
             
             <div class="highlight-box">
                 <h3>🎉 Parabéns! Você completou o treinamento</h3>
-                <p>Agora você está preparado para utilizar o novo processo de aditivos</p>
+                <p>Agora você está preparado para utilizar o novo processo de aditivos com mais segurança e eficiência.</p>
             </div>
 
             <div class="content-grid">
                 <div class="content-section solution-box">
                     <h4>✅ O que você aprendeu</h4>
                     <ul>
-                        <li>Novo fluxo de aditivos no SERVICE</li>
-                        <li>Como lançar bonificações corretamente</li>
-                        <li>Cronograma mensal de faturamento</li>
-                        <li>Responsabilidades de cada time</li>
-                        <li>Benefícios do novo processo</li>
+                        <li>Novo fluxo de aditivos no ERP</li>
+                        <li>Como e quem lança cada tipo de bonificação</li>
+                        <li>A importância da etapa de Governança</li>
+                        <li>As responsabilidades de cada time</li>
                     </ul>
                 </div>
                 <div class="content-section">
@@ -656,7 +625,6 @@
                     <ul>
                         <li>Consulte a documentação para detalhes</li>
                         <li>Use os POCs setoriais no dia a dia</li>
-                        <li>Verifique a Matriz RACI quando necessário</li>
                         <li>Pratique com casos reais</li>
                         <li>Tire dúvidas com sua liderança</li>
                     </ul>
@@ -666,9 +634,9 @@
             <div class="process-flow" style="margin: 2rem 0;">
                 <div class="flow-step">📖 Documentação</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-step">⚡ Matriz RACI</div>
-                <div class="flow-arrow">→</div>
                 <div class="flow-step">🔧 POCs Setoriais</div>
+                 <div class="flow-arrow">→</div>
+                <div class="flow-step">🚀 Prática!</div>
             </div>
 
             <div style="text-align: center; margin-top: 2rem;">
@@ -683,7 +651,7 @@
                 ← Anterior
             </button>
             <div class="slide-counter">
-                <span id="currentSlide">1</span> / <span id="totalSlides">7</span>
+                <span id="currentSlide">1</span> / <span id="totalSlides">6</span>
             </div>
             <button class="btn" id="nextBtn" onclick="changeSlide(1)">
                 Próximo →
@@ -691,9 +659,9 @@
         </div>
     </div>
 
-    <script>
+   <script>
         let currentSlideIndex = 0;
-        const totalSlides = 7;
+        const totalSlides = 6;
 
         function updateProgress() {
             const progress = ((currentSlideIndex + 1) / totalSlides) * 100;
@@ -720,9 +688,7 @@
 
         function changeSlide(direction) {
             const slides = document.querySelectorAll('.slide');
-            
             slides[currentSlideIndex].classList.remove('active');
-            
             currentSlideIndex += direction;
             
             if (currentSlideIndex < 0) currentSlideIndex = 0;
@@ -736,16 +702,19 @@
         }
 
         function nextDemoStep(demoNumber) {
-            const currentStep = document.querySelector(`#demo${demoNumber}-step1.active, #demo${demoNumber}-step2.active, #demo${demoNumber}-step3.active, #demo${demoNumber}-step4.active, #demo${demoNumber}-step5.active`);
-            if (!currentStep) return;
-            
-            currentStep.classList.remove('active');
-            
-            const stepNumber = parseInt(currentStep.id.slice(-1));
-            const nextStep = document.getElementById(`demo${demoNumber}-step${stepNumber + 1}`);
-            
-            if (nextStep) {
-                nextStep.classList.add('active');
+            const allSteps = document.querySelectorAll(`[id^="demo${demoNumber}-step"]`);
+            let currentStepIndex = -1;
+            allSteps.forEach((step, index) => {
+                if (step.classList.contains('active')) {
+                    currentStepIndex = index;
+                }
+            });
+
+            if (currentStepIndex !== -1) {
+                allSteps[currentStepIndex].classList.remove('active');
+                if (allSteps[currentStepIndex + 1]) {
+                    allSteps[currentStepIndex + 1].classList.add('active');
+                }
             }
         }
 
@@ -762,17 +731,18 @@
                 if (opt === option) {
                     opt.classList.add(isCorrect ? 'correct' : 'incorrect');
                 } else if (opt.onclick.toString().includes('true')) {
-                    opt.classList.add('correct');
+                    // Highlight correct answer if user chooses wrong
+                    if(!isCorrect) opt.classList.add('correct');
                 }
             });
         }
 
         function showStep3Answer(choice) {
             const feedback = document.getElementById('step3-feedback');
-            if (choice === 1) {
-                feedback.innerHTML = '<strong style="color: #38a169;">✅ Correto!</strong> O primeiro passo é sempre criar o orçamento no SERVICE usando os modelos padrão.';
+            if (choice === 2) {
+                feedback.innerHTML = '<strong style="color: #38a169;">✅ Correto!</strong> Por ser uma bonificação temporária (3 meses) devido a um atraso, a responsabilidade é do Gestor. O valor correto é R$ 150 por 3 meses.';
             } else {
-                feedback.innerHTML = '<strong style="color: #e53e3e;">❌ Incorreto.</strong> O primeiro passo é criar o orçamento no SERVICE. O processo mudou!';
+                feedback.innerHTML = '<strong style="color: #e53e3e;">❌ Incorreto.</strong> Bonificações temporárias são responsabilidade do Gestor. O Financeiro cuida das bonificações de longo prazo, de contrato.';
             }
             nextDemoStep(3);
         }
@@ -780,21 +750,19 @@
         function showBonusAnswer(choice) {
             const feedback = document.getElementById('bonus-feedback');
             if (choice === 2) {
-                feedback.innerHTML = '<strong style="color: #38a169;">✅ Perfeito!</strong> Como há 3 meses de carência, deve lançar bonificação de R$ 750,00 (5 × R$ 150) por 3 meses para compensar o valor que será cobrado automaticamente.';
+                feedback.innerHTML = '<strong style="color: #38a169;">✅ Perfeito!</strong> Nenhuma bonificação tem efeito sem a aprovação final da Governança. Essa é a etapa que garante a segurança do processo.';
             } else {
-                feedback.innerHTML = '<strong style="color: #e53e3e;">❌ Incorreto.</strong> Como há carência negociada, é preciso lançar bonificação para compensar o valor que será cobrado automaticamente.';
+                feedback.innerHTML = '<strong style="color: #e53e3e;">❌ Incorreto.</strong> Lembre-se da nova etapa de controle! A Governança precisa aprovar para que o desconto seja válido no faturamento.';
             }
             document.getElementById('demo3-step4').classList.add('active');
             document.getElementById('demo3-step3').classList.remove('active');
         }
 
-        // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
             updateProgress();
             updateSlideCounter();
             updateNavigation();
             
-            // Atalhos do teclado
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'ArrowLeft' && currentSlideIndex > 0) {
                     changeSlide(-1);
@@ -805,5 +773,4 @@
         });
     </script>
 </body>
-</html>="timeline-icon">1</div>
-                    <div class
+</html>
