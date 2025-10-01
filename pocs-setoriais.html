@@ -656,7 +656,8 @@
                 <div class="team-header">
                     <div class="team-icon gerente">👨‍💼</div>
                     <h3 class="team-title">Gestor da Filial</h3>
-                    <p class="team-subtitle">Validação comercial + Bonificações</p>
+                    <p class="team-subtitle">Validação Comercial + Bonificações <strong>Temporárias</strong></p>
+
                 </div>
                 <div class="team-stats">
                     <div class="stat">
@@ -761,6 +762,43 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Time de Governança -->
+            <div class="team-card" onclick="openTeamModal('governanca')">
+                <div class="team-header">
+                    <div class="team-icon" style="background: linear-gradient(135deg, #8E2DE2, #4A00E0); box-shadow: 0 10px 30px rgba(142, 45, 226, 0.4);">🛡️</div>
+                    <h3 class="team-title">Governança</h3>
+                    <p class="team-subtitle">Aprovação Final de Bonificações</p>
+                </div>
+                <div class="team-stats">
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Ações</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Controle</div>
+                    </div>
+                </div>
+                <div class="team-preview">
+                    <div class="preview-item">
+                        <div class="preview-icon checklist">✓</div>
+                        <span>Liberação de bonificações</span>
+                    </div>
+                <div class="preview-item">
+                    <div class="preview-icon tools">🚦</div>
+                        <span>Ponto de controle final</span>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-icon alert">🔒</div>
+                        <span>Segurança no faturamento</span>
+                </div>
+                <button class="action-btn">
+                    <span>Acessar Guia</span>
+                    <span>→</span>
+                </button>
+            </div>
+        </div>
         </div>
     </div>
 
@@ -891,7 +929,7 @@
             },
             gerente: {
                 title: "👨‍💼 Gestor da Filial",
-                subtitle: "Duas responsabilidades críticas: validação comercial dos aditivos e lançamento de bonificações até o dia 10",
+                subtitle: "Duas responsabilidades críticas: validação comercial e o lançamento de bonificações TEMPORÁRIAS até o dia 10",
                 alert: "⏰ PRAZO CRÍTICO: DIA 10! Você tem até o dia 10 de cada mês para lançar todas as bonificações.",
                 steps: [
                     {
@@ -905,8 +943,8 @@
                         details: "Verificar períodos de carência, descontos ou outras condições especiais"
                     },
                     {
-                        title: "Identificar necessidade de bonificações",
-                        description: "Analisar quais aditivos têm condições especiais",
+                        title: "Identificar necessidade de bonificações Temporárias",
+                        description: "Analisar aditivos com condições especiais e pontuais",
                         details: "Identificar aditivos com carência, descontos ou promoções negociadas"
                     },
                     {
@@ -1024,7 +1062,32 @@
                     { icon: "⏱️", title: "Cronômetro", description: "Acompanhe tempos de processo" },
                     { icon: "🔧", title: "Otimização", description: "Identifique melhorias" }
                 ]
-            }
+            },
+            governanca: {
+                title: "🛡️ Governança e Receitas",
+                subtitle: "Sua responsabilidade é ser o ponto de controle final, validando todas as bonificações antes que impactem o faturamento.",
+                alert: "🔒 Nenhuma bonificação é aplicada sem a sua liberação. Você é a garantia de segurança do processo.",
+                steps: [
+                    {
+                        title: "Monitorar Bonificações Lançadas",
+                        description: "Acessar a tela de liberação de bonificações no ERP",
+                        details: "Tanto os lançamentos do Financeiro quanto os dos Gestores aparecerão aqui pendentes de aprovação."
+                    },
+                    {
+                        title: "Validar Lançamento vs. Negociação",
+                        description: "Conferir se o valor, período e motivo estão corretos",
+                        details: "Verificar a correspondência com o que foi negociado no aditivo ou na solicitação do gestor."
+                    },
+                    {
+                        title: "Aprovar ou Rejeitar a Bonificação",
+                        description: "Liberar para o faturamento ou devolver para correção",
+                        details: "Ao aprovar, a bonificação será aplicada no próximo ciclo de faturamento. Se rejeitar, o responsável será notificado para corrigir."
+                    }
+                ],
+                tools: [
+                    { icon: "📜", title: "Histórico", description: "Consulte o log de todas as liberações" }
+                ]
+                        }
         };
 
         function openTeamModal(teamKey) {
