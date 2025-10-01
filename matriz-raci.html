@@ -125,7 +125,7 @@
         .raci-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 800px;
+            min-width: 900px;
         }
 
         .raci-table th,
@@ -198,7 +198,7 @@
             background: linear-gradient(135deg, #805ad5, #6b46c1);
             box-shadow: 0 4px 15px rgba(128, 90, 213, 0.4);
         }
-
+        
         .raci-badge.hidden {
             opacity: 0.2;
             transform: scale(0.8);
@@ -349,31 +349,6 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .legend {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .raci-table-container {
-                padding: 1rem;
-            }
-            
-            .view-toggle {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
     </style>
 </head>
 <body>
@@ -388,12 +363,13 @@
                 <label>Filtrar por Time:</label>
                 <select class="filter-select" id="teamFilter" onchange="filterByTeam()">
                     <option value="">Todos</option>
-                    <option value="solicitante">Filial</option>
+                    <option value="filial">Filial</option>
                     <option value="projetos">Projetos</option>
-                    <option value="gerente">Gestores</option>
-                    <option value="solicitante">Gerente CS</option>
+                    <option value="gerente_cs">Gerente CS</option>
                     <option value="juridico">Jurídico</option>
-                    <option value="faturamento">Faturamento (Matriz)</option>
+                    <option value="gestor_filial">Gestor (Filial)</option>
+                    <option value="financeiro">Financeiro</option>
+                    <option value="governanca">Governança (Receitas)</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -409,22 +385,10 @@
         </div>
 
         <div class="legend">
-            <div class="legend-item">
-                <div class="legend-badge R">R</div>
-                <span>Responsável (Executa a tarefa)</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-badge A">A</div>
-                <span>Quem Aprova (Responde pela tarefa, aprova)</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-badge C">C</div>
-                <span>Consultado (Precisa ser consultado)</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-badge I">I</div>
-                <span>Informado (Precisa ser informado)</span>
-            </div>
+            <div class="legend-item"><div class="legend-badge R">R</div><span>Responsável (Executa)</span></div>
+            <div class="legend-item"><div class="legend-badge A">A</div><span>Quem Aprova</span></div>
+            <div class="legend-item"><div class="legend-badge C">C</div><span>Consultado</span></div>
+            <div class="legend-item"><div class="legend-badge I">I</div><span>Informado</span></div>
         </div>
 
         <div class="view-toggle">
@@ -436,78 +400,86 @@
             <table class="raci-table">
                 <thead>
                     <tr>
-                        <th>Atividade/th>
+                        <th>Atividade</th>
                         <th>Filial</th>
                         <th>Projetos</th>
-                        <th>Jurídico</th>
                         <th>Gerente CS</th>
-                        <th>Gestores</th>
-                        <th>Faturamento (Matriz)</th>
+                        <th>Jurídico</th>
+                        <th>Gestor (Filial)</th>
+                        <th>Financeiro</th>
+                        <th>Governança (Receitas)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="activity-row" data-activity="orcamento">
                         <td><strong>1. Criação do Orçamento no ERP</strong></td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Cria orçamento no ERP usando modelos padrão')">R</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Precisa ser informado sobre o orçamento criado')">I</span></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Cria o orçamento inicial no ERP usando os modelos padrão.')">R</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'É informado sobre o novo orçamento para se preparar para a validação.')">I</span></td>
                         <td>-</td>
                         <td>-</td>
-                        <td><span class="raci-badge A" onclick="showTooltip(event, 'Aprova negociações previamente, durante negociação.')">A</span></td>
+                        <td><span class="raci-badge C" onclick="showTooltip(event, 'É consultado sobre os termos da negociação comercial.')">C</span></td>
+                        <td>-</td>
                         <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="validacao-tecnica">
                         <td><strong>2. Validação Técnica do Orçamento</strong></td>
-                        <td><span class="raci-badge C" onclick="showTooltip(event, 'Pode ser consultado para esclarecimentos')">C</span></td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Responsável por validar tecnicamente o escopo')">R</span></td>
+                        <td><span class="raci-badge C" onclick="showTooltip(event, 'Pode ser consultada para esclarecer dúvidas sobre o escopo solicitado.')">C</span></td>
+                        <td><span class="raci-badge A" onclick="showTooltip(event, 'Aprova o orçamento do ponto de vista técnico.')">A</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'É informado que a validação técnica foi concluída.')">I</span></td>
                         <td>-</td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Deve ser informado caso validação seja aprovada.')">I</span></td>
+                        <td>-</td>
                         <td>-</td>
                         <td>-</td>
                     </tr>
-                    <tr class="activity-row" data-activity="validacao-comercial">
+                    <tr class="activity-row" data-activity="fechamento-orcamento">
                         <td><strong>3. Fechamento do Orçamento</strong></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre fechamento do orçamento, via ticket')">I</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'É informada sobre o fechamento do orçamento via ticket.')">I</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'É informado que sua validação foi concluída.')">I</span></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa o fechamento, preenchendo valores de serviço e licença.')">R</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'É informado que um orçamento foi aprovado e seguirá para contrato.')">I</span></td>
                         <td>-</td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Deve ser informado caso validação seja aprovada.')">I</span></td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Valida se orçamento corresponde ao negociado')">R</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Pode ser informado caso esteja em cópia do ticket.')">I</span></td>
+                        <td>-</td>
                         <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="contrato">
                         <td><strong>4. Elaboração e Envio do Contrato Aditivo</strong></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre elaboração do contrato')">I</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'É informada sobre o andamento e envio do contrato.')">I</span></td>
                         <td>-</td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Responsável pela Elaboração e Envio')">R</span></td>
                         <td>-</td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Recebe Contrato em cópia')">I</span></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa a elaboração e o envio do contrato para assinatura.')">R</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Recebe o contrato em cópia para ciência.')">I</span></td>
+                        <td>-</td>
                         <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="baixa-aditivo">
                         <td><strong>5. Baixa do Aditivo como "Assinado"</strong></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre a baixa, está em cópia')">I</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'É informada que o aditivo foi assinado.')">I</span></td>
                         <td>-</td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'CRÍTICO: Marca como assinado imediatamente após confirmação')">R</span></td>
                         <td>-</td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Recebe notificação via e-mail.')">I</span></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'CRÍTICO: Executa a baixa no ERP, o que altera a mensalidade do cliente.')">R</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'GATILHO: É informado para iniciar, se necessário, o lançamento de bonificação temporária.')">I</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'GATILHO: É informado para iniciar, se necessário, o lançamento de bonificação de contrato.')">I</span></td>
                         <td>-</td>
                     </tr>
-                    <tr class="activity-row" data-activity="bonificacoes">
-                        <td><strong>6. Lançamento de Bonificações (até dia 10)</strong></td>
+                    <tr class="activity-row" data-activity="bonificacao-temp">
+                        <td><strong>6. Lançamento de Bonificação TEMPORÁRIA</strong></td>
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'PRAZO CRÍTICO: Lança bonificações até dia 10')">R</span></td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Consulta todo dia 10 a Lista de Faturamento e Bonificações')">I</span></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa o lançamento de bônus de curto prazo (ex: carência) até o dia 10.')">R</span></td>
+                        <td>-</td>
+                        <td><span class="raci-badge A" onclick="showTooltip(event, 'Aprova o lançamento da bonificação.')">A</span></td>
                     </tr>
-                    <tr class="activity-row" data-activity="reajustes">
-                        <td><strong>7. Aplicação de Reajustes Contratuais</strong></td>
+                    <tr class="activity-row" data-activity="bonificacao-contrato">
+                        <td><strong>7. Lançamento de Bonificação DE CONTRATO</strong></td>
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>
-                        <td><span class="raci-badge C" onclick="showTooltip(event, 'Deve ser consultado sobre reajuste de serviços')">C</span></td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa reajustes nos dias 12-13')">R</span></td>
+                        <td>-</td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa o lançamento de bônus de longo prazo (descontos fixos).')">R</span></td>
+                        <td><span class="raci-badge A" onclick="showTooltip(event, 'Aprova o lançamento da bonificação.')">A</span></td>
                     </tr>
                     <tr class="activity-row" data-activity="relatorios">
                         <td><strong>8. Geração de Relatórios para Conferência</strong></td>
@@ -515,17 +487,19 @@
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>
-                        <td><span class="raci-badge A" onclick="showTooltip(event, 'Deve Aprovar os relatórios para conferir dados')">A</span></td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Gera e distribui relatórios no dia 13')">R</span></td>
+                        <td><span class="raci-badge A" onclick="showTooltip(event, 'Aprova o relatório de pré-faturamento da sua filial.')">A</span></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa a geração e distribuição dos relatórios de conferência.')">R</span></td>
+                        <td>-</td>
                     </tr>
                     <tr class="activity-row" data-activity="faturamento-final">
-                        <td><strong>9. Execução Final do Faturamento (a partir do dia 15)</strong></td>
+                        <td><strong>9. Execução Final do Faturamento</strong></td>
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>
-                        <td><span class="raci-badge I" onclick="showTooltip(event, 'Informado sobre conclusão do faturamento')">I</span></td>
-                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa faturamento com base nos dados confiáveis do ERP')">R</span></td>
+                        <td><span class="raci-badge I" onclick="showTooltip(event, 'É informado sobre a conclusão do faturamento.')">I</span></td>
+                        <td><span class="raci-badge R" onclick="showTooltip(event, 'Executa o faturamento final no ERP com base nos dados validados.')">R</span></td>
+                        <td>-</td>
                     </tr>
                 </tbody>
             </table>
@@ -535,116 +509,77 @@
             <h2 style="text-align: center; margin-bottom: 2rem; color: #2d3748;">Fluxo Temporal do Processo</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-icon">1</div>
+                    <div class="timeline-icon">1-3</div>
                     <div class="timeline-content">
-                        <h4>Solicitante cria orçamento no SERVICE</h4>
-                        <p>Usando modelos padrão, contemplando equipamentos e serviços</p>
+                        <h4>Criação e Validação do Orçamento</h4>
+                        <p>A Filial cria o orçamento, que é validado tecnicamente por Projetos e comercialmente pelo Gerente CS.</p>
                         <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Filial - Responsável</span>
-                            <span class="responsibility-tag C">Projetos - Consultado</span>
-                            <span class="responsibility-tag A">Gestor - Aprovou Previamente</span>
+                            <span class="responsibility-tag R">Filial</span>
+                            <span class="responsibility-tag A">Projetos</span>
+                            <span class="responsibility-tag R">Gerente CS</span>
                         </div>
                     </div>
                 </div>
-
                 <div class="timeline-item">
-                    <div class="timeline-icon">2</div>
+                    <div class="timeline-icon">4-5</div>
                     <div class="timeline-content">
-                        <h4>Time de Projetos valida tecnicamente</h4>
-                        <p>Verifica equipamentos Porter e licenças vinculadas à matriz</p>
+                        <h4>Elaboração e Baixa do Contrato</h4>
+                        <p>O Jurídico elabora o contrato, envia para assinatura e realiza a baixa imediata no ERP após o aceite.</p>
                         <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Projetos - Responsável</span>
-                            <span class="responsibility-tag C">Filial - Consultado</span>
-                            <span class="responsibility-tag I">Gerente - Informado em caso de aprovação</span>
+                            <span class="responsibility-tag R">Jurídico</span>
+                            <span class="responsibility-tag I">Gestor (Filial)</span>
+                            <span class="responsibility-tag I">Financeiro</span>
                         </div>
                     </div>
                 </div>
-
                 <div class="timeline-item">
-                    <div class="timeline-icon">3</div>
+                    <div class="timeline-icon">6-7</div>
                     <div class="timeline-content">
-                        <h4>Gerente Fecha orçamento</h4>
-                        <p>Confirma se orçamento corresponde ao que foi negociado</p>
+                        <h4>Lançamento das Bonificações</h4>
+                        <p>O <strong>Gestor (Filial)</strong> lança bonificações temporárias e o <strong>Financeiro</strong> lança as de contrato.</p>
                         <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Gerente - Responsável</span>
-                            <span class="responsibility-tag I">Filial - Informado</span>
-                            <span class="responsibility-tag I">Jurídico - Informado</span>
+                            <span class="responsibility-tag R">Gestor (Filial)</span>
+                            <span class="responsibility-tag R">Financeiro</span>
+                            <span class="responsibility-tag A">Governança</span>
                         </div>
                     </div>
                 </div>
-
                 <div class="timeline-item">
-                    <div class="timeline-icon">4</div>
+                    <div class="timeline-icon">8</div>
                     <div class="timeline-content">
-                        <h4>Jurídico elabora contrato aditivo</h4>
-                        <p>Com base no orçamento aprovado</p>
+                        <h4>Conferência do Faturamento</h4>
+                        <p>O Financeiro gera os relatórios prévios, que são validados e aprovados pelos Gestores de Filial.</p>
                         <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Jurídico - Responsável</span>
-                            <span class="responsibility-tag I">Filial e Gestores - Informados</span>
+                            <span class="responsibility-tag R">Financeiro</span>
+                            <span class="responsibility-tag A">Gestor (Filial)</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-icon">5</div>
-                    <div class="timeline-content">
-                        <h4><strong>ATENÇÃO:</strong> Jurídico baixa aditivo como "assinado"</h4>
-                        <p>Imediatamente após confirmação da assinatura</p>
-                        <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Jurídico - Responsável por baixa</span>
-                            <span class="responsibility-tag I">GESTOR e Filial - Informado PARA LANÇAR BONIFICAÇÃO</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-icon">6</div>
-                    <div class="timeline-content">
-                        <h4><strong>PRAZO CRÍTICO:</strong> Gestores lançam bonificações (até dia 10)</h4>
-                        <p>Para casos de carência ou descontos negociados</p>
-                        <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Gestor - Responsável</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-icon">7-8</div>
-                    <div class="timeline-content">
-                        <h4>Faturamento processa reajustes e gera relatórios (dias 12-13)</h4>
-                        <p>Aplica reajustes e processa dados no ERP</p>
-                        <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Faturamento - Responsável</span>
-                            <span class="responsibility-tag C">Gestor - Consultado</span>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="timeline-item">
                     <div class="timeline-icon">9</div>
                     <div class="timeline-content">
-                        <h4>Execução final do faturamento (a partir do dia 15)</h4>
-                        <p>Com base em dados 100% confiáveis do ERP</p>
+                        <h4>Execução Final do Faturamento</h4>
+                        <p>Com tudo validado, o Financeiro executa o processo final no ERP.</p>
                         <div class="responsibility-tags">
-                            <span class="responsibility-tag R">Faturamento - Responsável</span>
-                            <span class="responsibility-tag I">Todos - Informados</span>
+                            <span class="responsibility-tag R">Financeiro</span>
+                            <span class="responsibility-tag I">Gestor (Filial)</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="tooltip" id="tooltip"></div>
 
     <script>
-        let currentView = 'matrix';
         const raciData = {
-            'solicitante': ['orcamento'],
-            'projetos': ['orcamento', 'validacao-tecnica'],
-            'gerente': ['validacao-comercial', 'bonificacoes'],
-            'juridico': ['contrato', 'baixa-aditivo'],
-            'faturamento': ['reajustes', 'relatorios', 'faturamento-final']
+            'filial': ['orcamento', 'validacao-tecnica', 'fechamento-orcamento', 'contrato', 'baixa-aditivo'],
+            'projetos': ['validacao-tecnica', 'fechamento-orcamento'],
+            'gerente_cs': ['validacao-tecnica', 'fechamento-orcamento'],
+            'juridico': ['fechamento-orcamento', 'contrato', 'baixa-aditivo'],
+            'gestor_filial': ['orcamento', 'contrato', 'baixa-aditivo', 'bonificacao-temp', 'relatorios', 'faturamento-final'],
+            'financeiro': ['baixa-aditivo', 'bonificacao-contrato', 'relatorios', 'faturamento-final'],
+            'governanca': ['bonificacao-temp', 'bonificacao-contrato']
         };
 
         function toggleView(viewType) {
@@ -653,42 +588,37 @@
             const toggleBtns = document.querySelectorAll('.toggle-btn');
 
             toggleBtns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
 
             if (viewType === 'matrix') {
                 matrixView.style.display = 'block';
                 timelineView.classList.remove('active');
-                currentView = 'matrix';
             } else {
                 matrixView.style.display = 'none';
                 timelineView.classList.add('active');
-                currentView = 'timeline';
             }
         }
-
+        
         function filterByTeam() {
             const selectedTeam = document.getElementById('teamFilter').value;
             const rows = document.querySelectorAll('.activity-row');
 
             rows.forEach(row => {
+                row.classList.remove('filtered-out', 'highlighted');
                 if (!selectedTeam) {
-                    row.classList.remove('filtered-out');
+                    return;
+                }
+                const activityId = row.getAttribute('data-activity');
+                if (raciData[selectedTeam] && raciData[selectedTeam].includes(activityId)) {
+                    row.classList.add('highlighted');
                 } else {
-                    const activityId = row.getAttribute('data-activity');
-                    if (raciData[selectedTeam] && raciData[selectedTeam].includes(activityId)) {
-                        row.classList.remove('filtered-out');
-                        row.classList.add('highlighted');
-                    } else {
-                        row.classList.add('filtered-out');
-                        row.classList.remove('highlighted');
-                    }
+                    row.classList.add('filtered-out');
                 }
             });
-
-            // Reset RACI filter when team filter is applied
-            if (selectedTeam) {
-                document.getElementById('raciFilter').value = '';
-            }
+            if (selectedTeam) document.getElementById('raciFilter').value = '';
         }
 
         function filterByRACI() {
@@ -696,24 +626,14 @@
             const badges = document.querySelectorAll('.raci-badge');
 
             badges.forEach(badge => {
-                if (!selectedRACI) {
-                    badge.classList.remove('hidden');
-                } else {
-                    if (badge.classList.contains(selectedRACI)) {
-                        badge.classList.remove('hidden');
-                    } else {
-                        badge.classList.add('hidden');
-                    }
+                badge.classList.remove('hidden');
+                if (selectedRACI && !badge.classList.contains(selectedRACI)) {
+                    badge.classList.add('hidden');
                 }
             });
-
-            // Reset team filter when RACI filter is applied
             if (selectedRACI) {
                 document.getElementById('teamFilter').value = '';
-                const rows = document.querySelectorAll('.activity-row');
-                rows.forEach(row => {
-                    row.classList.remove('filtered-out', 'highlighted');
-                });
+                document.querySelectorAll('.activity-row').forEach(row => row.classList.remove('filtered-out', 'highlighted'));
             }
         }
 
@@ -723,43 +643,15 @@
             tooltip.style.left = event.pageX + 10 + 'px';
             tooltip.style.top = event.pageY - 10 + 'px';
             tooltip.classList.add('show');
-
-            // Hide tooltip after 3 seconds
-            setTimeout(() => {
-                tooltip.classList.remove('show');
-            }, 3000);
         }
 
         function hideTooltip() {
             document.getElementById('tooltip').classList.remove('show');
         }
 
-        // Hide tooltip when clicking elsewhere
         document.addEventListener('click', function(event) {
             if (!event.target.classList.contains('raci-badge')) {
                 hideTooltip();
-            }
-        });
-
-        // Enhanced interaction for badges
-        document.querySelectorAll('.raci-badge').forEach(badge => {
-            badge.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.2)';
-            });
-
-            badge.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
-
-        // Add keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                // Reset all filters
-                document.getElementById('teamFilter').value = '';
-                document.getElementById('raciFilter').value = '';
-                filterByTeam();
-                filterByRACI();
             }
         });
     </script>
