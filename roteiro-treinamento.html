@@ -425,7 +425,7 @@
                 <div class="timeline-item">
                     <div class="timeline-icon">7</div>
                     <div class="timeline-content">
-                        <h4>Governança aprova a Bonificação</h4>
+                        <h4>Time de Receitas aprova a Bonificação</h4>
                         <p>A equipe de Receitas faz a validação final para que a bonificação tenha efeito no faturamento.</p>
                     </div>
                 </div>
@@ -454,7 +454,7 @@
                      <button class="btn" onclick="nextDemoStep(1)">Último passo →</button>
                 </div>
                 <div class="demo-step" id="demo1-step6">
-                    <p><strong>Aprovação:</strong> Governança aprova o lançamento, garantindo que o cliente não será cobrado indevidamente.</p>
+                    <p><strong>Aprovação:</strong> Time de Receitas aprova o lançamento, garantindo que o cliente não será cobrado indevidamente.</p>
                     <button class="btn" onclick="resetDemo(1)">Começar de novo?</button>
                 </div>
             </div>
@@ -490,7 +490,7 @@
             </div>
 
             <div class="governance-box">
-                <h3>🛡️ Etapa Final: Aprovação da Governança</h3>
+                <h3>🛡️ Etapa Final: Aprovação de Receitas</h3>
                 <p>Toda bonificação, seja do Gestor ou do Financeiro, <strong>precisa ser aprovada pela equipe de Receitas</strong>. Essa é a trava de segurança que garante a precisão do nosso faturamento.</p>
             </div>
 
@@ -554,7 +554,7 @@
                     </ul>
                 </div>
                  <div class="content-section">
-                    <h4>🛡️ Governança</h4>
+                    <h4>🛡️ Receitas</h4>
                     <ul>
                         <li><strong>Aprovar TODAS as bonificações</strong></li>
                     </ul>
@@ -592,7 +592,7 @@
                     <p><strong>Agora:</strong> O que acontece após o lançamento da bonificação pelo Gestor?</p>
                     <div style="margin-top: 1rem;">
                         <button class="btn" onclick="showBonusAnswer(1)" style="margin-right: 1rem;">O valor já é descontado no faturamento</button>
-                        <button class="btn" onclick="showBonusAnswer(2)">A Governança precisa aprovar o lançamento</button>
+                        <button class="btn" onclick="showBonusAnswer(2)">O time de Receitas precisa aprovar o lançamento</button>
                     </div>
                 </div>
                 <div class="demo-step" id="demo3-step4">
@@ -750,9 +750,9 @@
         function showBonusAnswer(choice) {
             const feedback = document.getElementById('bonus-feedback');
             if (choice === 2) {
-                feedback.innerHTML = '<strong style="color: #38a169;">✅ Perfeito!</strong> Nenhuma bonificação tem efeito sem a aprovação final da Governança. Essa é a etapa que garante a segurança do processo.';
+                feedback.innerHTML = '<strong style="color: #38a169;">✅ Perfeito!</strong> Nenhuma bonificação tem efeito sem a aprovação final do time de Receitas. Essa é a etapa que garante a segurança do processo.';
             } else {
-                feedback.innerHTML = '<strong style="color: #e53e3e;">❌ Incorreto.</strong> Lembre-se da nova etapa de controle! A Governança precisa aprovar para que o desconto seja válido no faturamento.';
+                feedback.innerHTML = '<strong style="color: #e53e3e;">❌ Incorreto.</strong> Lembre-se da nova etapa de controle! O Time de Receitas precisa aprovar para que o desconto seja válido no faturamento.';
             }
             document.getElementById('demo3-step4').classList.add('active');
             document.getElementById('demo3-step3').classList.remove('active');
