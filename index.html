@@ -138,6 +138,14 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
         }
 
+        .card.external {
+            border: 2px solid #3182ce;
+        }
+
+        .card.external::before {
+            background: linear-gradient(135deg, transparent 0%, rgba(49, 130, 206, 0.1) 100%);
+        }
+
         .card-icon {
             width: 60px;
             height: 60px;
@@ -171,6 +179,11 @@
 
         .card-icon.poc {
             background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+
+        .card-icon.kb {
+            background: linear-gradient(135deg, #3182ce, #2c5282);
             color: white;
         }
 
@@ -224,6 +237,39 @@
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn.external {
+            background: linear-gradient(135deg, #3182ce, #2c5282);
+        }
+
+        .btn.external:hover {
+            box-shadow: 0 10px 20px rgba(49, 130, 206, 0.3);
+        }
+
+        .external-icon {
+            font-size: 0.8rem;
+            margin-left: 0.3rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-external {
+            background: rgba(49, 130, 206, 0.2);
+            color: #2c5282;
+        }
+
+        .badge-tutorial {
+            background: rgba(237, 137, 54, 0.2);
+            color: #7c2d12;
         }
 
         .process-overview {
@@ -404,6 +450,22 @@
                 </ul>
                 <button class="btn">Explorar POCs</button>
             </div>
+
+            <div class="card external" onclick="openKnowledgeBase()">
+                <div class="card-icon kb">💡</div>
+                <h3>Base de Conhecimento Inside</h3>
+                <p>Tutoriais técnicos passo a passo do sistema ERP com prints e vídeos explicativos.</p>
+                <ul class="card-features">
+                    <li>Tutoriais com capturas de tela</li>
+                    <li>Passo a passo técnico detalhado</li>
+                    <li>Artigos sempre atualizados</li>
+                    <li>Vídeos demonstrativos</li>
+                </ul>
+                <span class="badge badge-external">Recurso Externo</span>
+                <span class="badge badge-tutorial">Tutoriais</span>
+                <br><br>
+                <button class="btn external">Acessar KB Inside <span class="external-icon">↗</span></button>
+            </div>
         </div>
 
         <div class="footer">
@@ -443,6 +505,10 @@
 
         function openPOCs() {
             window.open('pocs-setoriais.html', '_blank');
+        }
+
+        function openKnowledgeBase() {
+            window.open('https://atendimento.insidesistemas.com.br/kb/pt-br', '_blank');
         }
 
         // Inicialização
